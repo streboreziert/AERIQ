@@ -31,13 +31,17 @@ The **AERIQ app** provides:
 ---
 
 ## Repository Structure
-src/            # Firmware source code
-hardware/       # PCB schematics, layouts, and hardware design files
-app/            # AERIQ application
-docs/           # Documentation and system architecture
-resources/      # Images, diagrams, and reference materials
 
----
+src/
+├─ Firmware source code
+hardware/
+├─ PCB schematics, layouts, and hardware design files
+app/
+├─ AERIQ application
+docs/
+├─ Documentation and system architecture
+resources/
+├─ Images, diagrams, and reference materials
 
 ## Hardware
 
