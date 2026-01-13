@@ -2,7 +2,7 @@
 
 A battery-powered environmental monitoring device that measures CO₂ and indoor climate, shows the latest values on a low-power E-Ink display, and provides a mobile app for configuration, history, and insights.
 
-The main base system is **Raspberry Pi Zero 2 W**, supported by an optional **ESP32-C3** coprocessor for ultra-low-power sensing/display tasks.
+The main base system is **Raspberry Pi Zero 2 W**, supported by an  **ESP32-C3** coprocessor for ultra-low-power sensing/display tasks.
 
 ---
 
@@ -11,7 +11,7 @@ The main base system is **Raspberry Pi Zero 2 W**, supported by an optional **ES
 - **BME280** — temperature, humidity, pressure (I²C)
 - **SCD41** — CO₂ (I²C)
 - **Pervasive Displays E2290KS0F1** — 2.90" TFT E-Paper display (SPI + control pins)
-- **ESP32-C3-MINI-1U (with antenna)** — low-power MCU for sensor/display control (optional but recommended for battery life)
+- **ESP32-C3-MINI-1U (with antenna)** — low-power MCU for sensor/display control
 - **TPS61291** — 2×AA boost converter to stable 3.3 V
 
 ---
@@ -27,7 +27,7 @@ The main base system is **Raspberry Pi Zero 2 W**, supported by an optional **ES
 - Handles configuration, calibration, and firmware settings
 
 ### ESP32-C3 
-**Purpose:** ultra-low-power “front-end node” (best for battery operation)
+**Purpose:** ultra-low-power “front-end node” 
 
 - Wakes up on schedule
 - Reads BME280 + SCD41 over I²C
