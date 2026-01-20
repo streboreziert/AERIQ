@@ -1,4 +1,4 @@
-## 👤 Person A – 10-Week Work Plan (Starting 3 Feb 2025)
+##  Roberts – 10-Week Work Plan
 
 | Week | Date Range              | Objective (Placeholder) | Tasks (Placeholder) | Status |
 |------|-------------------------|-------------------------|---------------------|--------|
@@ -15,7 +15,7 @@
 
 ---
 
-## 👤 Person B – 10-Week Work Plan (Starting 3 Feb 2025)
+##  Alberts – 10-Week Work Plan
 
 | Week | Date Range              | Objective (Placeholder) | Tasks (Placeholder) | Status |
 |------|-------------------------|-------------------------|---------------------|--------|
