@@ -1,18 +1,12 @@
-# Multi-Sensor Low-Power E-Ink Device + Mobile App (Concept Spec)
-
-A battery-powered environmental monitoring device that measures CO₂ and indoor climate, shows the latest values on a low-power E-Ink display, and provides a mobile app for configuration, history, and insights.
-
-The main base system is **Raspberry Pi Zero 2 W**, supported by an  **ESP32-C3** coprocessor for ultra-low-power sensing/display tasks.
-
----
+#Concept Spec
 
 ## Hardware Components
 
 - **BME280** — temperature, humidity, pressure (I²C)
-- **SCD41** — CO₂ (I²C)
-- **Pervasive Displays E2290KS0F1** — 2.90" TFT E-Paper display (SPI + control pins)
+- **SCD41** — CO₂ measurments
+- **Pervasive Displays E2290KS0F1** — 2.90" TFT E-Paper display
 - **ESP32-C3-MINI-1U (with antenna)** — low-power MCU for sensor/display control
-- **TPS61291** — 2×AA boost converter to stable 3.3 V
+- **Batteries** - whole setup will be powered by two AA batteries
 
 ---
 
@@ -46,7 +40,7 @@ The main base system is **Raspberry Pi Zero 2 W**, supported by an  **ESP32-C3**
    - latest values
    - historical graphs
    - device status and battery
-5. Mobile app can push settings:
+5. Mobile app or html page cnnection can push settings:
    - sampling period
    - E-Ink refresh strategy
    - calibration offsets
@@ -54,7 +48,7 @@ The main base system is **Raspberry Pi Zero 2 W**, supported by an  **ESP32-C3**
 
 ---
 
-## Core Features (Mobile App)
+## Core Features
 
 ### 1) Dashboard (Live)
 - CO₂ ppm (primary)
@@ -108,12 +102,14 @@ The main base system is **Raspberry Pi Zero 2 W**, supported by an  **ESP32-C3**
   - data ingestion
   - health checks
   - cleanup (keep last X months)
+    
+### Most likely booted with Ubuntu lite.
 
 ---
 
 ## Communication Options
 
-### App ↔ Pi (recommended)
+### App ↔ Pi
 - Local Wi-Fi connection using REST API (HTTP)
 
 ### ESP32 ↔ Pi
@@ -127,11 +123,3 @@ The main base system is **Raspberry Pi Zero 2 W**, supported by an  **ESP32-C3**
 - Small row: temp / humidity / pressure
 - Bottom: last update time + tiny battery icon
 - Optional: CO₂ band indicator (green/yellow/red) using patterns (no color)
-
----
-
-## Tech Stack Summary
-
-- **Firmware / low-level:** C (ESP-IDF) for ESP32-C3
-- **Base system backend:** Python (FastAPI + SQLite)
-- **Mobile app:** Flutter (Dart)
