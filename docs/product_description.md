@@ -13,7 +13,9 @@ After that, we make a PCB design in Ki Cad following the previously developed sc
 
 The whole setup will sit within a plasic 3D printed case developed in Fusion by us.
 
-AERIQ has wi-fi and it will send data through it to a server that will have a database which will hold it. We will develop a website that will show the users of AERIQ the data in a simplified and intuitive format using API. 
+AERIQ has wi-fi and it will send data through it to a server that will have a database which will hold it. We will develop a website that will show the users of AERIQ the data in a simplified and intuitive format using API.
+
+Currently the idea is that the monitor will sit attatched to a wall just like other similar products.
 
 
 ## The Problem We Are Solving
