@@ -1,15 +1,19 @@
 ## Idea description.
 
-Our creation is an air quality monitor that measures CO2 levels, humidity, tempereature and air pressure.
+Our creation will be an air quality monitor that measures CO2 levels, humidity, tempereature and air pressure.
 
-We first start by creating a PCB scheme in KI CAD. We  do that by combining the following parts:
+We first start by creating a PCB scheme in Ki Cad. We  do that by combining the following parts:
 Sensor (temperature, pressure and humidity) - BME280;
 Sensor (CO2) - SCD41-D-R2;
 Screen - E2290KS0F1;
 Microprocessor - ESP32-C3-MINI-1U-N4X;
 Boost converter - TPS61291DRVT;
 
-After, we 
+After that, we make a PCB design in Ki Cad following the previously developed scheme. Once it is ready we order it as well as the other parts. When they arrive we weld the parts to the PCB board and wire the resulting product to two AA bateries. 
+
+The whole setup will sit within a plasic 3D printed case developed in Fusion by us.
+
+AERIQ has wi-fi and it will send data through it to a server that will have a database which will hold it. We will develop a website that will show the users of AERIQ the data in a simplified and intuitive format using API. 
 
 
 ## The Problem We Are Solving
