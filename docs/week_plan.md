@@ -19,7 +19,7 @@
 
 | Week | Development Scope | Technical Tasks (Explicit) | Definition of Done |
 |------|-------------------|----------------------------|-------------------|
-| 1 | Sensor node enclosure | • PCB constraints <br>• Ventilation for humidity <br>• Mounting points | STL v1 |
+| 1 | Sensor node enclosure | • 3D model for pcb case <br>• Sensor functionalioty in case <br>• Mounting points | STL v1 |
 | 2 | Zero W2 OS & networking | • Headless OS install <br>• Hostapd + dnsmasq <br>• Static IP config | Stable hotspot |
 | 3 | Web UI (baseline) | • Static HTML layout <br>• CSS styling <br>• Basic fetch API | `/index.html` |
 | 4 | Web UI (dynamic) | • Live updates <br>• Error reporting <br>• Mobile layout | Responsive UI |
