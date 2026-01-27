@@ -1,36 +1,56 @@
-## 👤 Roberts – 10-Week Work Plan
 
-| Week | Date Range           | Objective              | Tasks                                                     | Status |
-|------|----------------------|------------------------|-----------------------------------------------------------|--------|
-| 1    | 3 Feb – 9 Feb 2025   | Soldering & Debugging  | Solder PCB, verify ESP32-C3 connections and functionality | ⬜     |
-| 2    | 10 Feb – 16 Feb 2025 | Library Setup          | Create and configure libraries for ESP32-C3               | ⬜     |
-| 3    | 17 Feb – 23 Feb 2025 | Code Testing           | Basic visual output testing and data reading              | ⬜     |
-| 4    | 24 Feb – 2 Mar 2025  | Code Testing           | Continue visual output testing and data reading           | ⬜     |
-| 5    | 3 Mar – 9 Mar 2025   | Code Block I           | Visual output + data storage                              | ⬜     |
-| 6    | 10 Mar – 16 Mar 2025 | Code Block I           | Visual output + data storage                              | ⬜     |
-| 7    | 17 Mar – 23 Mar 2025 | Code Block II          | WiFi / HTML / Raspberry Pi Zero W2 server connection      | ⬜     |
-| 8    | 24 Mar – 30 Mar 2025 | Code Block II          | WiFi / HTML / Raspberry Pi Zero W2 server connection      | ⬜     |
-| 9    | 31 Mar – 6 Apr 2025  | Code Block III         | Interconnection between all components                    | ⬜     |
-| 10   | 7 Apr – 13 Apr 2025  | Code Block III         | Interconnection between all components                    | ⬜     |
+##  Roberts
+
+| Week | Objective | Konkrēti uzdevumi (moduļi / faili) | Deliverables |
+|------|----------|-------------------------------------|--------------|
+| 1 | PCB bring-up & HW debug | • 3.3 V rail mērījumi (idle/load) <br>• EN / GPIO8 boot testi <br>• SPI/I2C continuity tests <br>• Power-switch MOSFET ON/OFF, leakage | ✔ ESP32 programmējams <br>✔ Stabila barošana <br>✔ Nav leakage OFF |
+| 2 | Firmware skeleton | • Repo struktūra (`main/`, `hal/`, `drivers/`) <br>• `hal/gpio.c` <br>• `hal/i2c.c`, `hal/spi.c` <br>• Watchdog init | ✔ Clean build <br>✔ HAL darbojas |
+| 3 | Display low-level driver | • SPI init (CS/DC/RST) <br>• `drivers/display/display_init.c` <br>• Test patterns (fill, grid) | ✔ Stabilns attēls |
+| 4 | Sensor drivers | • `drivers/sensors/*.c` <br>• I2C raw read <br>• CRC / error handling <br>• Sampling timing | ✔ Sensor → RAM |
+| 5 | Data pipeline I | • Data struct (`data_model.h`) <br>• Ring buffer <br>• Timestamping | ✔ Live data buffer |
+| 6 | Data pipeline II | • Flash / NVS storage <br>• Power-loss recovery | ✔ Dati saglabājas |
+| 7 | WiFi core | • AP + STA init <br>• `net/wifi.c` <br>• HTTP server skeleton | ✔ `/status` API |
+| 8 | Network robustness | • Reconnect logic <br>• Timeout handling <br>• Heap leak check | ✔ 24 h uptime |
+| 9 | System integration | • Display + sensors + WiFi <br>• Power sequencing | ✔ Full system |
+| 10 | Validation | • Power profiling <br>• Sleep modes <br>• Cleanup & refactor | ✔ Release firmware |
 
 ---
 
-## 👤 Alberts – 10-Week Work Plan
+## Alberts
 
-| Week | Date Range           | Objective                     | Tasks                                                     | Status |
-|------|----------------------|-------------------------------|-----------------------------------------------------------|--------|
-| 1    | 3 Feb – 9 Feb 2025   | 3D Case Modeling              | Create 3D model for sensor node enclosure                 | ⬜     |
-| 2    | 10 Feb – 16 Feb 2025 | Raspberry Pi Zero W2 Setup    | Configure hotspot and server                              | ⬜     |
-| 3    | 17 Feb – 23 Feb 2025 | Zero W2 HTML Interface        | Write custom HTML page to connect and control Zero W2     | ⬜     |
-| 4    | 24 Feb – 2 Mar 2025  | Zero W2 HTML Interface        | Continue custom HTML development                          | ⬜     |
-| 5    | 3 Mar – 9 Mar 2025   | ESP32-C3 HTML Interface       | Create custom HTML interface for ESP32-C3                 | ⬜     |
-| 6    | 10 Mar – 16 Mar 2025 | ESP32-C3 HTML Interface       | Continue HTML interface development                       | ⬜     |
-| 7    | 17 Mar – 23 Mar 2025 | Zero W2 3D Model              | Create 3D model for Raspberry Pi Zero W2 enclosure        | ⬜     |
-| 8    | 24 Mar – 30 Mar 2025 | Custom PCB for Zero W2        | Design complete custom PCB setup for Zero W2              | ⬜     |
-| 9    | 31 Mar – 6 Apr 2025  | System Integration            | Interconnection between all components                    | ⬜     |
-| 10   | 7 Apr – 13 Apr 2025  | System Integration            | Final interconnection and validation                      | ⬜     |
+| Week | Objective | Konkrēti uzdevumi (moduļi / faili) | Deliverables |
+|------|----------|-------------------------------------|--------------|
+| 1 | Sensor node enclosure | • PCB constraints <br>• Vent holes (humidity) <br>• Mounting bosses | ✔ STL v1 |
+| 2 | Zero W2 OS setup | • Headless OS <br>• hostapd + dnsmasq <br>• Static IP | ✔ Hotspot OK |
+| 3 | HTML UI v1 (Zero) | • `html/index.html` <br>• Basic CSS <br>• Fetch API | ✔ Static UI |
+| 4 | HTML UI v2 | • Live updates <br>• Error handling <br>• Mobile layout | ✔ Responsive UI |
+| 5 | ESP32 HTML UI | • Lightweight HTML <br>• Embedded assets | ✔ Direct connect |
+| 6 | UI polish | • JS graphs <br>• Dark / light mode | ✔ UX ready |
+| 7 | Zero W2 enclosure | • Thermal paths <br>• Cable relief | ✔ STL final |
+| 8 | Zero W2 PCB | • Power input <br>• USB / GPIO breakout | ✔ Gerbers |
+| 9 | System integration | • ESP ↔ Zero comms <br>• Data sync | ✔ End-to-end |
+| 10 | Validation | • Long-run tests <br>• User flow tests | ✔ Demo-ready |
 
-## 📝 Legend
+---
+
+##  Repository Structure
+
+| Path | Purpose |
+|-----|--------|
+| `firmware/main/` | Entry point |
+| `firmware/hal/` | GPIO / I2C / SPI |
+| `firmware/drivers/display/` | Display driver |
+| `firmware/drivers/sensors/` | Sensor drivers |
+| `firmware/net/` | WiFi + HTTP |
+| `firmware/power/` | Power sequencing |
+| `server/html/` | Frontend |
+| `server/css/` | Styles |
+| `server/js/` | JS logic |
+| `server/api/` | Backend |
+
+---
+
+## 📝 Status Legend
 - ⬜ Not started  
 - 🟨 In progress  
 - ✅ Completed
