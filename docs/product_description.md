@@ -1,21 +1,8 @@
 ## Idea description.
 
-Our creation will be an air quality monitor that measures CO2 levels, humidity, tempereature and air pressure.
-
-We first start by creating a PCB scheme in Ki Cad. We  do that by combining the following parts:
-Sensor (temperature, pressure and humidity) - BME280;
-Sensor (CO2) - SCD41-D-R2;
-Screen - E2290KS0F1;
-Microprocessor - ESP32-C3-MINI-1U-N4X;
-Boost converter - TPS61291DRVT;
-
-After that, we make a PCB design in Ki Cad following the previously developed scheme. Once it is ready we order it as well as the other parts. When they arrive we weld the parts to the PCB board and wire the resulting product to two AA bateries. 
-
-The whole setup will sit within a plasic 3D printed case developed in Fusion by us.
-
-AERIQ has wi-fi and it will send data through it to a server that will have a database which will hold it. We will develop a website that will show the users of AERIQ the data in a simplified and intuitive format using API.
-
-Currently the idea is that the monitor will sit attatched to a wall just like other similar products.
+This project is a compact, standalone air-quality monitor built for everyday indoor use, combining accurate sensing, clean industrial design, and a complete data pipeline from device to dashboard. The electronics are designed from scratch in KiCad, including a custom PCB with an integrated CO₂ sensor along with a humidity and temperature sensor to capture ventilation quality in real time. The enclosure is a custom designed 3D-printed case, designed to protect the electronics while ensuring proper airflow, with practical features like easy mounting/placement, good visibility.
+The embedded firmware is fully programmed to manage sensor sampling, digital filtering, calibration logic, and user-friendly behavior. It means the device’s microcontroller software is written to regularly read the CO₂/humidity/temperature sensors (it wakes up from sleep mode, sends the data and goes back to sleep), smooth out noisy readings so values don’t jump around, apply calibration/compensation so measurements stay accurate.
+Measurements are translated into meaningful indicators such as ventilation warnings based on both the CO₂ level and the CO₂ trend over time. A minimal interface (display and status indicators) keeps the device readable from a distance, while configurable thresholds enable alerts when CO₂ rises beyond healthy indoor levels or when humidity drifts into ranges associated with discomfort or condensation risk. The sensor connects to Wi-Fi and sends its readings via a REST API to a database, where they can be viewed in an app as a table, while a Raspberry Pi Zero serves as a simple gateway to handle network setup, temporary local storage if the connection drops, and reliable uploading when the internet is available.
 
 
 ## The Problem We Are Solving
