@@ -1,56 +1,54 @@
+## Roberts 
 
-##  Roberts
-
-| Week | Objective | Konkrēti uzdevumi (moduļi / faili) | Deliverables |
-|------|----------|-------------------------------------|--------------|
-| 1 | PCB bring-up & HW debug | • 3.3 V rail mērījumi (idle/load) <br>• EN / GPIO8 boot testi <br>• SPI/I2C continuity tests <br>• Power-switch MOSFET ON/OFF, leakage | ✔ ESP32 programmējams <br>✔ Stabila barošana <br>✔ Nav leakage OFF |
-| 2 | Firmware skeleton | • Repo struktūra (`main/`, `hal/`, `drivers/`) <br>• `hal/gpio.c` <br>• `hal/i2c.c`, `hal/spi.c` <br>• Watchdog init | ✔ Clean build <br>✔ HAL darbojas |
-| 3 | Display low-level driver | • SPI init (CS/DC/RST) <br>• `drivers/display/display_init.c` <br>• Test patterns (fill, grid) | ✔ Stabilns attēls |
-| 4 | Sensor drivers | • `drivers/sensors/*.c` <br>• I2C raw read <br>• CRC / error handling <br>• Sampling timing | ✔ Sensor → RAM |
-| 5 | Data pipeline I | • Data struct (`data_model.h`) <br>• Ring buffer <br>• Timestamping | ✔ Live data buffer |
-| 6 | Data pipeline II | • Flash / NVS storage <br>• Power-loss recovery | ✔ Dati saglabājas |
-| 7 | WiFi core | • AP + STA init <br>• `net/wifi.c` <br>• HTTP server skeleton | ✔ `/status` API |
-| 8 | Network robustness | • Reconnect logic <br>• Timeout handling <br>• Heap leak check | ✔ 24 h uptime |
-| 9 | System integration | • Display + sensors + WiFi <br>• Power sequencing | ✔ Full system |
-| 10 | Validation | • Power profiling <br>• Sleep modes <br>• Cleanup & refactor | ✔ Release firmware |
-
----
-
-## Alberts
-
-| Week | Objective | Konkrēti uzdevumi (moduļi / faili) | Deliverables |
-|------|----------|-------------------------------------|--------------|
-| 1 | Sensor node enclosure | • PCB constraints <br>• Vent holes (humidity) <br>• Mounting bosses | ✔ STL v1 |
-| 2 | Zero W2 OS setup | • Headless OS <br>• hostapd + dnsmasq <br>• Static IP | ✔ Hotspot OK |
-| 3 | HTML UI v1 (Zero) | • `html/index.html` <br>• Basic CSS <br>• Fetch API | ✔ Static UI |
-| 4 | HTML UI v2 | • Live updates <br>• Error handling <br>• Mobile layout | ✔ Responsive UI |
-| 5 | ESP32 HTML UI | • Lightweight HTML <br>• Embedded assets | ✔ Direct connect |
-| 6 | UI polish | • JS graphs <br>• Dark / light mode | ✔ UX ready |
-| 7 | Zero W2 enclosure | • Thermal paths <br>• Cable relief | ✔ STL final |
-| 8 | Zero W2 PCB | • Power input <br>• USB / GPIO breakout | ✔ Gerbers |
-| 9 | System integration | • ESP ↔ Zero comms <br>• Data sync | ✔ End-to-end |
-| 10 | Validation | • Long-run tests <br>• User flow tests | ✔ Demo-ready |
+| Week | Development Scope | Technical Tasks (Explicit) | Definition of Done |
+|------|-------------------|----------------------------|-------------------|
+| 1 | Hardware bring-up only | • Verify 3.3 V rail stability (idle & load) <br>• Validate ESP32-C3 boot configuration (EN, GPIO8) <br>• Continuity tests: SPI, I2C buses <br>• Power-switch MOSFET functional test (ON/OFF, leakage) | MCU flashes reliably <br>3.3 V within spec <br>No leakage in OFF state |
+| 2 | Firmware infrastructure | • Repository structure (`main/`, `hal/`, `drivers/`) <br>• GPIO abstraction layer <br>• I2C HAL initialization <br>• SPI HAL initialization <br>• Watchdog configuration | Clean compilation <br>HAL interfaces callable |
+| 3 | Display driver (low-level) | • SPI configuration (CS/DC/RST) <br>• Display reset & init sequence <br>• Test pattern rendering (solid fill, grid) | Stable image output |
+| 4 | Sensor drivers | • I2C sensor detection <br>• Raw data acquisition <br>• CRC / error handling <br>• Sampling timing validation | Sensor data in RAM |
+| 5 | Data pipeline (volatile) | • Data structures definition <br>• Ring buffer implementation <br>• Timestamping logic | Continuous data stream |
+| 6 | Data persistence | • Flash / NVS storage <br>• Data integrity checks <br>• Power-loss recovery | Data survives reset |
+| 7 | Network core | • Wi-Fi AP + STA configuration <br>• HTTP server skeleton <br>• JSON response format | `/status` endpoint |
+| 8 | Network robustness | • Reconnection logic <br>• Timeout handling <br>• Heap usage monitoring | 24 h stable runtime |
+| 9 | System integration | • Display + sensors + Wi-Fi combined <br>• Power-up / power-down sequencing | Fully integrated node |
+| 10 | Validation & release | • Power profiling <br>• Sleep mode validation <br>• Code cleanup & tagging | Release-ready firmware |
 
 ---
 
-##  Repository Structure
+## Alberts 
 
-| Path | Purpose |
-|-----|--------|
-| `firmware/main/` | Entry point |
-| `firmware/hal/` | GPIO / I2C / SPI |
-| `firmware/drivers/display/` | Display driver |
-| `firmware/drivers/sensors/` | Sensor drivers |
-| `firmware/net/` | WiFi + HTTP |
+| Week | Development Scope | Technical Tasks (Explicit) | Definition of Done |
+|------|-------------------|----------------------------|-------------------|
+| 1 | Sensor node enclosure | • PCB constraints <br>• Ventilation for humidity <br>• Mounting points | STL v1 |
+| 2 | Zero W2 OS & networking | • Headless OS install <br>• Hostapd + dnsmasq <br>• Static IP config | Stable hotspot |
+| 3 | Web UI (baseline) | • Static HTML layout <br>• CSS styling <br>• Basic fetch API | `/index.html` |
+| 4 | Web UI (dynamic) | • Live updates <br>• Error reporting <br>• Mobile layout | Responsive UI |
+| 5 | ESP32 local UI | • Lightweight embedded HTML <br>• Minimal JS | Direct ESP access |
+| 6 | UI refinement | • Graph rendering (JS) <br>• Theme switching | Polished UX |
+| 7 | Zero W2 enclosure | • Thermal considerations <br>• Cable strain relief | STL final |
+| 8 | Zero W2 custom PCB | • Power input design <br>• USB / GPIO breakout | Manufacturing files |
+| 9 | System integration | • ESP ↔ Zero data flow <br>• Data synchronization | End-to-end system |
+| 10 | System validation | • Long-term tests <br>• User flow validation | Demo-ready system |
+
+---
+
+## Repository Structure (Reference)
+
+| Path | Responsibility |
+|------|---------------|
+| `firmware/main/` | Application entry point |
+| `firmware/hal/` | Hardware abstraction |
+| `firmware/drivers/` | Display & sensors |
+| `firmware/net/` | Wi-Fi & HTTP |
 | `firmware/power/` | Power sequencing |
 | `server/html/` | Frontend |
-| `server/css/` | Styles |
-| `server/js/` | JS logic |
+| `server/css/` | Styling |
+| `server/js/` | Client logic |
 | `server/api/` | Backend |
 
 ---
 
-## 📝 Status Legend
+## Status Legend
 - ⬜ Not started  
 - 🟨 In progress  
 - ✅ Completed
