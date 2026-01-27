@@ -25,7 +25,7 @@
 | 4 | Web UI (dynamic) | • Live updates <br>• Error reporting <br>• Mobile layout | Responsive UI |
 | 5 | ESP32 local UI | • Lightweight embedded HTML <br>• Minimal JS | Direct ESP access |
 | 6 | UI refinement | • Graph rendering (JS) <br>• Theme switching | Polished UX |
-| 7 | Zero W2 enclosure | • Thermal considerations <br>• Cable strain relief | STL final |
+| 7 | Zero W2 enclosure | • Thermal considerations | STL final |
 | 8 | Zero W2 custom PCB | • Power input design <br>• USB / GPIO breakout | Manufacturing files |
 | 9 | System integration | • ESP ↔ Zero data flow <br>• Data synchronization | End-to-end system |
 | 10 | System validation | • Long-term tests <br>• User flow validation | Demo-ready system |
