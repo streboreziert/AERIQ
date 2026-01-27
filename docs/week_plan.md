@@ -2,7 +2,7 @@
 
 | Week | Development Scope | Technical Tasks (Explicit) | Definition of Done |
 |------|-------------------|----------------------------|-------------------|
-| 1 | Hardware bring-up only | • Verify 3.3 V rail stability (idle & load) <br>• Validate ESP32-C3 boot configuration (EN, GPIO8) <br>• Continuity tests: SPI, I2C buses <br>• Power-switch MOSFET functional test (ON/OFF, leakage) | MCU flashes reliably <br>3.3 V within spec <br>No leakage in OFF state |
+| 1 | Hardware bring-up only | • Check pcb power lines <br>• Validate ESP32-C3 boot configuration (EN, GPIO8) <br>• Continuity tests: SPI, I2C buses <br>• Power-switch MOSFET functional test (ON/OFF, leakage) | MCU flashes reliably <br>3.3 V within spec <br>No leakage in OFF state |
 | 2 | Firmware infrastructure | • Repository structure (`main/`, `hal/`, `drivers/`) <br>• GPIO abstraction layer <br>• I2C HAL initialization <br>• SPI HAL initialization <br>• Watchdog configuration | Clean compilation <br>HAL interfaces callable |
 | 3 | Display driver (low-level) | • SPI configuration (CS/DC/RST) <br>• Display reset & init sequence <br>• Test pattern rendering (solid fill, grid) | Stable image output |
 | 4 | Sensor drivers | • I2C sensor detection <br>• Raw data acquisition <br>• CRC / error handling <br>• Sampling timing validation | Sensor data in RAM |
