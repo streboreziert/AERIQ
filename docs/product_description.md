@@ -6,6 +6,7 @@ The embedded firmware is fully programmed to manage sensor sampling, digital fil
 
 Measurements are translated into meaningful indicators such as ventilation warnings based on both the CO₂ level and the CO₂ trend over time. A minimal interface (display and status indicators) keeps the device readable from a distance, while configurable thresholds enable alerts when CO₂ rises beyond healthy indoor levels or when humidity drifts into ranges associated with discomfort or condensation risk. The sensor connects to Wi-Fi and sends its readings via a REST API to a database, where they can be viewed in an app as a table, while a Raspberry Pi Zero serves as a simple gateway to handle network setup, temporary local storage if the connection drops, and reliable uploading when the internet is available.
 
+### ER scheme: https://drive.google.com/file/d/1WCpyld4nfr63qucxKFbbk-EPQDb_dCg8/view?usp=sharing
 
 ## The Problem We Are Solving
 
