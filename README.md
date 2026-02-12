@@ -74,14 +74,14 @@ The **resources** directory stores:
 ---
 
 ##FUNCTIONAL
-	•	Measure and register CO₂, humidity, temperature, and pressure
-	•	Store and transmit data to a local server or connected device
-	•	Display the most recent data on the device display
+- Measure and register CO₂, humidity, temperature, and pressure
+- Store and transmit data to a local server or connected device
+- Display the most recent data on the device display
 
 ##NON-FUNCTIONAL
-	•	Achieve full functionality on a single battery for 2 months
-	•	Sensor accuracy should be within ±40 ppm for CO₂ and ±0.5°C for temperature
-	•	Device should maintain at least 95% connection reliability
+- Achieve full functionality on a single battery for 2 months
+- Sensor accuracy should be within ±40 ppm for CO₂ and ±0.5°C for temperature
+- Device should maintain at least 95% connection reliability
 
 
 
