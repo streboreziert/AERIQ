@@ -1,0 +1,30 @@
+# AERIQ – System Requirements
+
+## Functional Requirements
+
+### FR1 – Environmental Data Acquisition
+The device shall periodically read data from integrated sensors (e.g., CO₂, temperature, humidity, pressure, optional VOC/PM) and timestamp each measurement.
+
+### FR2 – Real-Time Display & Alerts
+The system shall display current environmental readings in the user interface (device display and/or web/mobile UI).
+The system shall generate a visual alert when predefined threshold values are exceeded (e.g., CO₂ > 1200 ppm).
+
+### FR3 – Data Storage & Transmission
+The system shall store measurement history locally and transmit data to a gateway/server (e.g., via MQTT or REST API).
+The system shall allow users to view historical data (day/week/month) and export data in CSV format.
+
+---
+
+## Non-Functional Requirements
+
+### NFR1 – Accuracy & Stability
+The system shall provide stable sensor readings with minimal drift.
+The system shall support calibration mechanisms (e.g., ABC or manual calibration).
+
+### NFR2 – Reliability & Data Integrity
+The system shall continue operating without internet connectivity.
+The system shall buffer data locally and automatically synchronize once connectivity is restored.
+
+### NFR3 – Performance & Efficiency
+The user interface shall update within 1 second of new measurement availability.
+The system shall operate in an energy-efficient manner (e.g., optimized sampling interval, sleep modes).
