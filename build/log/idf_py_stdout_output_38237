@@ -1,0 +1,410 @@
+ESP-ROM:esp32c3-eco7-20230720
+Build:Jul 20 2023
+rst:0x15 (USB_UART_CHIP_RESET),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40382bfa
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x1738
+load:0x403cc710,len:0xb9c
+load:0x403ce710,len:0x2e40
+entry 0x403cc71a
+[0;32mI (24) boot: ESP-IDF v5.2-dirty 2nd stage bootloader[0m
+[0;32mI (24) boot: compile time Feb 17 2026 15:08:22[0m
+[0;32mI (25) boot: chip revision: v1.1[0m
+[0;32mI (28) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (32) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (37) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (42) boot: Enabling RNG early entropy source...[0m
+[0;32mI (47) boot: Partition Table:[0m
+[0;32mI (51) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (66) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (73) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (81) boot: End of partition table[0m
+[0;32mI (85) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0b3f0h ( 46064) map[0m
+[0;32mI (100) esp_image: segment 1: paddr=0001b418 vaddr=3fc8c600 size=01264h (  4708) load[0m
+[0;32mI (102) esp_image: segment 2: paddr=0001c684 vaddr=40380000 size=03994h ( 14740) load[0m
+[0;32mI (113) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=1a47ch (107644) map[0m
+[0;32mI (135) esp_image: segment 4: paddr=0003a4a4 vaddr=40383994 size=08ba4h ( 35748) load[0m
+[0;32mI (146) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (146) boot: Disabling RNG early entropy source...[0m
+[0;32mI (158) cpu_start: Unicore app[0m
+[0;32mI (166) cpu_start: Pro cpu start user code[0m
+[0;32mI (166) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (166) cpu_start: Application information:[0m
+[0;32mI (169) cpu_start: Project name:     aeriq[0m
+[0;32mI (174) cpu_start: App version:      1[0m
+[0;32mI (179) cpu_start: Compile time:     Feb 17 2026 15:05:58[0m
+[0;32mI (185) cpu_start: ELF file SHA256:  87ec063de...[0m
+[0;32mI (190) cpu_start: ESP-IDF:          v5.2-dirty[0m
+[0;32mI (195) cpu_start: Min chip rev:     v0.3[0m
+[0;32mI (200) cpu_start: Max chip rev:     v1.99 [0m
+[0;32mI (205) cpu_start: Chip rev:         v1.1[0m
+[0;32mI (210) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (217) heap_init: At 3FC8E830 len 000317D0 (197 KiB): RAM[0m
+[0;32mI (223) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (230) heap_init: At 3FCDC710 len 0000294C (10 KiB): Retention RAM[0m
+[0;32mI (237) heap_init: At 50000010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (244) spi_flash: detected chip: generic[0m
+[0;32mI (248) spi_flash: flash io: dio[0m
+[0;33mW (252) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (265) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (276) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (282) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (290) main_task: Started on CPU0[0m
+[0;32mI (290) main_task: Calling app_main()[0m
+[0;32mI (290) MAIN: AERIQ Starting...[0m
+[0;32mI (300) MAIN: I2C initialized on SDA:GPIO4 SCL:GPIO5[0m
+[0;32mI (300) MAIN: Initializing SCD41...[0m
+[0;32mI (810) MAIN: SCD41 initialized and measurement started[0m
+[0;32mI (810) MAIN: Initializing BME280...[0m
+[0;32mI (810) MAIN: BME280 Chip ID: 0x60 (expected 0x60)[0m
+[0;32mI (820) MAIN: BME280 initialized (calibration loaded)[0m
+[0;32mI (820) MAIN: System initialized, starting sensor readings...[0m
+[0;32mI (820) main_task: Returned from app_main()[0m
+[0;32mI (5820) MAIN: CO2: 0 ppm | Temp: 25.8 C | Humidity: 29.2 % | Pressure: 1014.41 hPa[0m
+[0;32mI (5820) MAIN: BME280 -> Temp: 25.9 C | Humidity: 27.7 % | Pressure: 1014.41 hPa[0m
+[0;32mI (10820) MAIN: CO2: 0 ppm | Temp: 25.7 C | Humidity: 28.8 % | Pressure: 1014.33 hPa[0m
+[0;32mI (10820) MAIN: BME280 -> Temp: 25.9 C | Humidity: 27.4 % | Pressure: 1014.33 hPa[0m
+[0;32mI (15820) MAIN: CO2: 0 ppm | Temp: 25.6 C | Humidity: 29.3 % | Pressure: 1014.38 hPa[0m
+[0;32mI (15820) MAIN: BME280 -> Temp: 26.0 C | Humidity: 27.8 % | Pressure: 1014.38 hPa[0m
+[0;32mI (20820) MAIN: CO2: 0 ppm | Temp: 25.5 C | Humidity: 29.9 % | Pressure: 1014.38 hPa[0m
+[0;32mI (20820) MAIN: BME280 -> Temp: 26.0 C | Humidity: 27.9 % | Pressure: 1014.38 hPa[0m
+[0;32mI (25820) MAIN: CO2: 0 ppm | Temp: 25.4 C | Humidity: 30.6 % | Pressure: 1014.32 hPa[0m
+[0;32mI (25820) MAIN: BME280 -> Temp: 26.0 C | Humidity: 28.1 % | Pressure: 1014.32 hPa[0m
+[0;32mI (30820) MAIN: CO2: 0 ppm | Temp: 25.2 C | Humidity: 31.4 % | Pressure: 1014.41 hPa[0m
+[0;32mI (30820) MAIN: BME280 -> Temp: 26.3 C | Humidity: 28.7 % | Pressure: 1014.41 hPa[0m
+[0;32mI (35820) MAIN: CO2: 0 ppm | Temp: 25.2 C | Humidity: 35.5 % | Pressure: 1014.38 hPa[0m
+[0;32mI (35820) MAIN: BME280 -> Temp: 26.5 C | Humidity: 30.7 % | Pressure: 1014.38 hPa[0m
+[0;32mI (40820) MAIN: CO2: 0 ppm | Temp: 25.2 C | Humidity: 44.0 % | Pressure: 1014.42 hPa[0m
+[0;32mI (40820) MAIN: BME280 -> Temp: 26.4 C | Humidity: 31.5 % | Pressure: 1014.42 hPa[0m
+[0;32mI (45820) MAIN: CO2: 0 ppm | Temp: 25.1 C | Humidity: 47.4 % | Pressure: 1014.39 hPa[0m
+[0;32mI (45820) MAIN: BME280 -> Temp: 26.4 C | Humidity: 31.1 % | Pressure: 1014.39 hPa[0m
+[0;32mI (50820) MAIN: CO2: 0 ppm | Temp: 25.0 C | Humidity: 44.0 % | Pressure: 1014.39 hPa[0m
+[0;32mI (50820) MAIN: BME280 -> Temp: 26.4 C | Humidity: 30.8 % | Pressure: 1014.39 hPa[0m
+[0;32mI (55820) MAIN: CO2: 0 ppm | Temp: 25.0 C | Humidity: 40.6 % | Pressure: 1014.39 hPa[0m
+[0;32mI (55820) MAIN: BME280 -> Temp: 26.4 C | Humidity: 30.7 % | Pressure: 1014.39 hPa[0m
+[0;32mI (60820) MAIN: CO2: 0 ppm | Temp: 24.9 C | Humidity: 38.3 % | Pressure: 1014.43 hPa[0m
+[0;32mI (60820) MAIN: BME280 -> Temp: 26.5 C | Humidity: 30.3 % | Pressure: 1014.43 hPa[0m
+[0;32mI (65820) MAIN: CO2: 0 ppm | Temp: 24.8 C | Humidity: 36.6 % | Pressure: 1014.45 hPa[0m
+[0;32mI (65820) MAIN: BME280 -> Temp: 26.5 C | Humidity: 30.0 % | Pressure: 1014.45 hPa[0m
+[0;32mI (70820) MAIN: CO2: 0 ppm | Temp: 24.8 C | Humidity: 35.4 % | Pressure: 1014.40 hPa[0m
+[0;32mI (70820) MAIN: BME280 -> Temp: 26.5 C | Humidity: 29.6 % | Pressure: 1014.40 hPa[0m
+[0;32mI (75820) MAIN: CO2: 0 ppm | Temp: 24.7 C | Humidity: 34.3 % | Pressure: 1014.42 hPa[0m
+[0;32mI (75820) MAIN: BME280 -> Temp: 26.5 C | Humidity: 29.3 % | Pressure: 1014.42 hPa[0m
+[0;32mI (80820) MAIN: CO2: 0 ppm | Temp: 24.6 C | Humidity: 33.5 % | Pressure: 1014.40 hPa[0m
+[0;32mI (80820) MAIN: BME280 -> Temp: 26.5 C | Humidity: 29.0 % | Pressure: 1014.40 hPa[0m
+[0;32mI (85820) MAIN: CO2: 0 ppm | Temp: 24.5 C | Humidity: 33.2 % | Pressure: 1014.37 hPa[0m
+[0;32mI (85820) MAIN: BME280 -> Temp: 26.6 C | Humidity: 29.0 % | Pressure: 1014.37 hPa[0m
+[0;32mI (90820) MAIN: CO2: 0 ppm | Temp: 24.4 C | Humidity: 33.3 % | Pressure: 1014.40 hPa[0m
+[0;32mI (90820) MAIN: BME280 -> Temp: 26.6 C | Humidity: 28.7 % | Pressure: 1014.40 hPa[0m
+[0;32mI (95820) MAIN: CO2: 0 ppm | Temp: 24.3 C | Humidity: 32.8 % | Pressure: 1014.44 hPa[0m
+[0;32mI (95820) MAIN: BME280 -> Temp: 26.6 C | Humidity: 28.4 % | Pressure: 1014.44 hPa[0m
+[0;32mI (100820) MAIN: CO2: 0 ppm | Temp: 24.3 C | Humidity: 32.4 % | Pressure: 1014.43 hPa[0m
+[0;32mI (100820) MAIN: BME280 -> Temp: 26.6 C | Humidity: 28.2 % | Pressure: 1014.43 hPa[0m
+[0;32mI (105820) MAIN: CO2: 0 ppm | Temp: 24.2 C | Humidity: 32.1 % | Pressure: 1014.40 hPa[0m
+[0;32mI (105820) MAIN: BME280 -> Temp: 26.6 C | Humidity: 28.1 % | Pressure: 1014.40 hPa[0m
+[0;32mI (110820) MAIN: CO2: 0 ppm | Temp: 24.2 C | Humidity: 32.0 % | Pressure: 1014.44 hPa[0m
+[0;32mI (110820) MAIN: BME280 -> Temp: 26.6 C | Humidity: 27.8 % | Pressure: 1014.44 hPa[0m
+[0;32mI (115820) MAIN: CO2: 0 ppm | Temp: 24.1 C | Humidity: 31.9 % | Pressure: 1014.44 hPa[0m
+[0;32mI (115820) MAIN: BME280 -> Temp: 26.6 C | Humidity: 27.6 % | Pressure: 1014.44 hPa[0m
+[0;32mI (120820) MAIN: CO2: 0 ppm | Temp: 24.0 C | Humidity: 31.7 % | Pressure: 1014.43 hPa[0m
+[0;32mI (120820) MAIN: BME280 -> Temp: 26.6 C | Humidity: 27.5 % | Pressure: 1014.43 hPa[0m
+[0;32mI (125820) MAIN: CO2: 0 ppm | Temp: 24.0 C | Humidity: 31.6 % | Pressure: 1014.37 hPa[0m
+[0;32mI (125820) MAIN: BME280 -> Temp: 26.6 C | Humidity: 27.4 % | Pressure: 1014.37 hPa[0m
+[0;32mI (130820) MAIN: CO2: 0 ppm | Temp: 24.0 C | Humidity: 31.6 % | Pressure: 1014.38 hPa[0m
+[0;32mI (130820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 27.0 % | Pressure: 1014.38 hPa[0m
+[0;32mI (135820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 31.6 % | Pressure: 1014.35 hPa[0m
+[0;32mI (135820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 27.2 % | Pressure: 1014.35 hPa[0m
+[0;32mI (140820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 31.6 % | Pressure: 1014.37 hPa[0m
+[0;32mI (140820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 27.2 % | Pressure: 1014.37 hPa[0m
+[0;32mI (145820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 31.8 % | Pressure: 1014.36 hPa[0m
+[0;32mI (145820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 27.0 % | Pressure: 1014.36 hPa[0m
+[0;32mI (150820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 31.7 % | Pressure: 1014.38 hPa[0m
+[0;32mI (150820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 27.0 % | Pressure: 1014.38 hPa[0m
+[0;32mI (155820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 31.6 % | Pressure: 1014.39 hPa[0m
+[0;32mI (155820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 26.8 % | Pressure: 1014.39 hPa[0m
+[0;32mI (160820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 31.6 % | Pressure: 1014.33 hPa[0m
+[0;32mI (160820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 26.7 % | Pressure: 1014.33 hPa[0m
+[0;32mI (165820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.6 % | Pressure: 1014.35 hPa[0m
+[0;32mI (165820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 26.6 % | Pressure: 1014.35 hPa[0m
+[0;32mI (170820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.5 % | Pressure: 1014.40 hPa[0m
+[0;32mI (170820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 26.3 % | Pressure: 1014.40 hPa[0m
+[0;32mI (175820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.5 % | Pressure: 1014.32 hPa[0m
+[0;32mI (175820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 26.6 % | Pressure: 1014.32 hPa[0m
+[0;32mI (180820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.4 % | Pressure: 1014.37 hPa[0m
+[0;32mI (180820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 26.4 % | Pressure: 1014.37 hPa[0m
+[0;32mI (185820) MAIN: CO2: 0 ppm | Temp: 23.6 C | Humidity: 31.4 % | Pressure: 1014.34 hPa[0m
+[0;32mI (185820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 26.3 % | Pressure: 1014.34 hPa[0m
+[0;32mI (190820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.4 % | Pressure: 1014.38 hPa[0m
+[0;32mI (190820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 26.2 % | Pressure: 1014.38 hPa[0m
+[0;32mI (195820) MAIN: CO2: 0 ppm | Temp: 23.6 C | Humidity: 31.4 % | Pressure: 1014.40 hPa[0m
+[0;32mI (195820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 26.2 % | Pressure: 1014.40 hPa[0m
+[0;32mI (200820) MAIN: CO2: 0 ppm | Temp: 23.6 C | Humidity: 31.5 % | Pressure: 1014.30 hPa[0m
+[0;32mI (200820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 26.1 % | Pressure: 1014.30 hPa[0m
+[0;32mI (205820) MAIN: CO2: 0 ppm | Temp: 23.6 C | Humidity: 31.5 % | Pressure: 1014.45 hPa[0m
+[0;32mI (205820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 26.1 % | Pressure: 1014.45 hPa[0m
+[0;32mI (210820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 31.5 % | Pressure: 1014.36 hPa[0m
+[0;32mI (210820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 26.0 % | Pressure: 1014.36 hPa[0m
+[0;32mI (215820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 31.5 % | Pressure: 1014.35 hPa[0m
+[0;32mI (215820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 26.0 % | Pressure: 1014.35 hPa[0m
+[0;32mI (220820) MAIN: CO2: 0 ppm | Temp: 23.6 C | Humidity: 31.5 % | Pressure: 1014.36 hPa[0m
+[0;32mI (220820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 26.0 % | Pressure: 1014.36 hPa[0m
+[0;32mI (225820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 31.5 % | Pressure: 1014.37 hPa[0m
+[0;32mI (225820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 25.9 % | Pressure: 1014.37 hPa[0m
+[0;32mI (230820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 31.5 % | Pressure: 1014.40 hPa[0m
+[0;32mI (230820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 25.9 % | Pressure: 1014.40 hPa[0m
+[0;32mI (235820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 31.5 % | Pressure: 1014.42 hPa[0m
+[0;32mI (235820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 25.9 % | Pressure: 1014.42 hPa[0m
+[0;32mI (240820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 31.5 % | Pressure: 1014.40 hPa[0m
+[0;32mI (240820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 25.8 % | Pressure: 1014.40 hPa[0m
+[0;32mI (245820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 31.5 % | Pressure: 1014.37 hPa[0m
+[0;32mI (245820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 25.8 % | Pressure: 1014.37 hPa[0m
+[0;32mI (250820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 31.5 % | Pressure: 1014.38 hPa[0m
+[0;32mI (250820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 25.7 % | Pressure: 1014.38 hPa[0m
+[0;32mI (255820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 31.5 % | Pressure: 1014.36 hPa[0m
+[0;32mI (255820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 25.7 % | Pressure: 1014.36 hPa[0m
+[0;32mI (260820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 31.6 % | Pressure: 1014.39 hPa[0m
+[0;32mI (260820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 25.7 % | Pressure: 1014.39 hPa[0m
+[0;32mI (265820) MAIN: CO2: 0 ppm | Temp: 23.4 C | Humidity: 31.6 % | Pressure: 1014.39 hPa[0m
+[0;32mI (265820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 25.6 % | Pressure: 1014.39 hPa[0m
+[0;32mI (270820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 31.6 % | Pressure: 1014.36 hPa[0m
+[0;32mI (270820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 25.6 % | Pressure: 1014.36 hPa[0m
+[0;32mI (275820) MAIN: CO2: 0 ppm | Temp: 23.4 C | Humidity: 31.5 % | Pressure: 1014.36 hPa[0m
+[0;32mI (275820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 25.7 % | Pressure: 1014.36 hPa[0m
+[0;32mI (280820) MAIN: CO2: 0 ppm | Temp: 23.4 C | Humidity: 31.5 % | Pressure: 1014.37 hPa[0m
+[0;32mI (280820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 25.6 % | Pressure: 1014.37 hPa[0m
+[0;32mI (285820) MAIN: CO2: 0 ppm | Temp: 23.4 C | Humidity: 31.4 % | Pressure: 1014.44 hPa[0m
+[0;32mI (285820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 25.5 % | Pressure: 1014.44 hPa[0m
+[0;32mI (290820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 31.4 % | Pressure: 1014.40 hPa[0m
+[0;32mI (290820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 25.5 % | Pressure: 1014.40 hPa[0m
+[0;32mI (295820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 31.4 % | Pressure: 1014.34 hPa[0m
+[0;32mI (295820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 25.4 % | Pressure: 1014.34 hPa[0m
+[0;32mI (300820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 31.4 % | Pressure: 1014.37 hPa[0m
+[0;32mI (300820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 25.6 % | Pressure: 1014.37 hPa[0m
+[0;32mI (305820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 31.4 % | Pressure: 1014.36 hPa[0m
+[0;32mI (305820) MAIN: BME280 -> Temp: 26.7 C | Humidity: 25.4 % | Pressure: 1014.36 hPa[0m
+[0;32mI (310820) MAIN: CO2: 1231 ppm | Temp: 23.5 C | Humidity: 33.9 % | Pressure: 1014.39 hPa[0m
+[0;32mI (310820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 25.7 % | Pressure: 1014.39 hPa[0m
+[0;32mI (315820) MAIN: CO2: 1304 ppm | Temp: 23.5 C | Humidity: 41.6 % | Pressure: 1014.33 hPa[0m
+[0;32mI (315820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 25.7 % | Pressure: 1014.33 hPa[0m
+[0;32mI (320820) MAIN: CO2: 0 ppm | Temp: 23.4 C | Humidity: 44.8 % | Pressure: 1014.44 hPa[0m
+[0;32mI (320820) MAIN: BME280 -> Temp: 26.9 C | Humidity: 25.8 % | Pressure: 1014.44 hPa[0m
+[0;32mI (325820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 41.1 % | Pressure: 1014.36 hPa[0m
+[0;32mI (325820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 25.7 % | Pressure: 1014.36 hPa[0m
+[0;32mI (330820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 38.0 % | Pressure: 1014.32 hPa[0m
+[0;32mI (330820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 25.7 % | Pressure: 1014.32 hPa[0m
+[0;32mI (335820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 36.0 % | Pressure: 1014.37 hPa[0m
+[0;32mI (335820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 25.7 % | Pressure: 1014.37 hPa[0m
+[0;32mI (340820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 35.4 % | Pressure: 1014.34 hPa[0m
+[0;32mI (340820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 26.0 % | Pressure: 1014.34 hPa[0m
+[0;32mI (345820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 35.3 % | Pressure: 1014.36 hPa[0m
+[0;32mI (345820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 26.0 % | Pressure: 1014.36 hPa[0m
+[0;32mI (350820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 34.6 % | Pressure: 1014.40 hPa[0m
+[0;32mI (350820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 25.9 % | Pressure: 1014.40 hPa[0m
+[0;32mI (355820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 33.8 % | Pressure: 1014.37 hPa[0m
+[0;32mI (355820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 25.8 % | Pressure: 1014.37 hPa[0m
+[0;32mI (360820) MAIN: CO2: 0 ppm | Temp: 23.6 C | Humidity: 33.2 % | Pressure: 1014.32 hPa[0m
+[0;32mI (360820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 25.8 % | Pressure: 1014.32 hPa[0m
+[0;32mI (365820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 32.7 % | Pressure: 1014.37 hPa[0m
+[0;32mI (365820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 25.9 % | Pressure: 1014.37 hPa[0m
+[0;32mI (370820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 33.0 % | Pressure: 1014.42 hPa[0m
+[0;32mI (370820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 25.9 % | Pressure: 1014.42 hPa[0m
+[0;32mI (375820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 32.8 % | Pressure: 1014.37 hPa[0m
+[0;32mI (375820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 26.0 % | Pressure: 1014.37 hPa[0m
+[0;32mI (380820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 32.4 % | Pressure: 1014.33 hPa[0m
+[0;32mI (380820) MAIN: BME280 -> Temp: 26.8 C | Humidity: 25.6 % | Pressure: 1014.33 hPa[0m
+[0;32mI (385820) MAIN: CO2: 0 ppm | Temp: 23.5 C | Humidity: 32.2 % | Pressure: 1014.35 hPa[0m
+[0;32mI (385820) MAIN: BME280 -> Temp: 26.9 C | Humidity: 25.6 % | Pressure: 1014.35 hPa[0m
+[0;32mI (390820) MAIN: CO2: 0 ppm | Temp: 23.6 C | Humidity: 32.0 % | Pressure: 1014.36 hPa[0m
+[0;32mI (390820) MAIN: BME280 -> Temp: 26.9 C | Humidity: 25.6 % | Pressure: 1014.36 hPa[0m
+[0;32mI (395820) MAIN: CO2: 0 ppm | Temp: 23.6 C | Humidity: 31.8 % | Pressure: 1014.39 hPa[0m
+[0;32mI (395820) MAIN: BME280 -> Temp: 26.9 C | Humidity: 25.7 % | Pressure: 1014.39 hPa[0m
+[0;32mI (400820) MAIN: CO2: 0 ppm | Temp: 23.6 C | Humidity: 32.0 % | Pressure: 1014.36 hPa[0m
+[0;32mI (400820) MAIN: BME280 -> Temp: 26.9 C | Humidity: 25.6 % | Pressure: 1014.36 hPa[0m
+[0;32mI (405820) MAIN: CO2: 0 ppm | Temp: 23.6 C | Humidity: 31.9 % | Pressure: 1014.37 hPa[0m
+[0;32mI (405820) MAIN: BME280 -> Temp: 26.9 C | Humidity: 25.6 % | Pressure: 1014.37 hPa[0m
+[0;32mI (410820) MAIN: CO2: 0 ppm | Temp: 23.6 C | Humidity: 31.8 % | Pressure: 1014.33 hPa[0m
+[0;32mI (410820) MAIN: BME280 -> Temp: 27.0 C | Humidity: 25.9 % | Pressure: 1014.33 hPa[0m
+[0;32mI (415820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.7 % | Pressure: 1014.32 hPa[0m
+[0;32mI (415820) MAIN: BME280 -> Temp: 27.0 C | Humidity: 25.9 % | Pressure: 1014.32 hPa[0m
+[0;32mI (420820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.5 % | Pressure: 1014.34 hPa[0m
+[0;32mI (420820) MAIN: BME280 -> Temp: 27.0 C | Humidity: 25.4 % | Pressure: 1014.34 hPa[0m
+[0;32mI (425820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.5 % | Pressure: 1014.41 hPa[0m
+[0;32mI (425820) MAIN: BME280 -> Temp: 27.0 C | Humidity: 25.6 % | Pressure: 1014.41 hPa[0m
+[0;32mI (430820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 31.5 % | Pressure: 1014.40 hPa[0m
+[0;32mI (430820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.5 % | Pressure: 1014.40 hPa[0m
+[0;32mI (435820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 31.6 % | Pressure: 1014.37 hPa[0m
+[0;32mI (435820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.5 % | Pressure: 1014.37 hPa[0m
+[0;32mI (440820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 31.6 % | Pressure: 1014.31 hPa[0m
+[0;32mI (440820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.4 % | Pressure: 1014.31 hPa[0m
+[0;32mI (445820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 31.5 % | Pressure: 1014.42 hPa[0m
+[0;32mI (445820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.5 % | Pressure: 1014.42 hPa[0m
+[0;32mI (450820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 31.4 % | Pressure: 1014.39 hPa[0m
+[0;32mI (450820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.4 % | Pressure: 1014.39 hPa[0m
+[0;32mI (455820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 31.3 % | Pressure: 1014.37 hPa[0m
+[0;32mI (455820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.3 % | Pressure: 1014.37 hPa[0m
+[0;32mI (460820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 33.5 % | Pressure: 1014.35 hPa[0m
+[0;32mI (460820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.6 % | Pressure: 1014.35 hPa[0m
+[0;32mI (465820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 46.5 % | Pressure: 1014.38 hPa[0m
+[0;32mI (465820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 25.9 % | Pressure: 1014.38 hPa[0m
+[0;32mI (470820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 47.7 % | Pressure: 1014.47 hPa[0m
+[0;32mI (470820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 25.8 % | Pressure: 1014.47 hPa[0m
+[0;32mI (475820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 42.3 % | Pressure: 1014.40 hPa[0m
+[0;32mI (475820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 25.7 % | Pressure: 1014.40 hPa[0m
+[0;32mI (480820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 38.7 % | Pressure: 1014.42 hPa[0m
+[0;32mI (480820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 25.6 % | Pressure: 1014.42 hPa[0m
+[0;32mI (485820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 36.5 % | Pressure: 1014.31 hPa[0m
+[0;32mI (485820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 25.5 % | Pressure: 1014.31 hPa[0m
+[0;32mI (490820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 35.0 % | Pressure: 1014.32 hPa[0m
+[0;32mI (490820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 25.5 % | Pressure: 1014.32 hPa[0m
+[0;32mI (495820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 34.0 % | Pressure: 1014.34 hPa[0m
+[0;32mI (495820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 25.4 % | Pressure: 1014.34 hPa[0m
+[0;32mI (500820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 33.3 % | Pressure: 1014.39 hPa[0m
+[0;32mI (500820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.3 % | Pressure: 1014.39 hPa[0m
+[0;32mI (505820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 32.8 % | Pressure: 1014.44 hPa[0m
+[0;32mI (505820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.3 % | Pressure: 1014.44 hPa[0m
+[0;32mI (510820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 32.5 % | Pressure: 1014.38 hPa[0m
+[0;32mI (510820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.2 % | Pressure: 1014.38 hPa[0m
+[0;32mI (515820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 32.2 % | Pressure: 1014.40 hPa[0m
+[0;32mI (515820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.2 % | Pressure: 1014.40 hPa[0m
+[0;32mI (520820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 32.1 % | Pressure: 1014.36 hPa[0m
+[0;32mI (520820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.1 % | Pressure: 1014.36 hPa[0m
+[0;32mI (525820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 31.8 % | Pressure: 1014.42 hPa[0m
+[0;32mI (525820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.5 % | Pressure: 1014.42 hPa[0m
+[0;32mI (530820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 31.8 % | Pressure: 1014.39 hPa[0m
+[0;32mI (530820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.2 % | Pressure: 1014.39 hPa[0m
+[0;32mI (535820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 31.7 % | Pressure: 1014.34 hPa[0m
+[0;32mI (535820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.0 % | Pressure: 1014.34 hPa[0m
+[0;32mI (540820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 31.6 % | Pressure: 1014.36 hPa[0m
+[0;32mI (540820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.1 % | Pressure: 1014.36 hPa[0m
+[0;32mI (545820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 31.5 % | Pressure: 1014.40 hPa[0m
+[0;32mI (545820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.2 % | Pressure: 1014.40 hPa[0m
+[0;32mI (550820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 31.5 % | Pressure: 1014.37 hPa[0m
+[0;32mI (550820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.0 % | Pressure: 1014.37 hPa[0m
+[0;32mI (555820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.5 % | Pressure: 1014.31 hPa[0m
+[0;32mI (555820) MAIN: BME280 -> Temp: 27.0 C | Humidity: 25.0 % | Pressure: 1014.31 hPa[0m
+[0;32mI (560820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.4 % | Pressure: 1014.34 hPa[0m
+[0;32mI (560820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.0 % | Pressure: 1014.34 hPa[0m
+[0;32mI (565820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.3 % | Pressure: 1014.32 hPa[0m
+[0;32mI (565820) MAIN: BME280 -> Temp: 27.0 C | Humidity: 24.9 % | Pressure: 1014.32 hPa[0m
+[0;32mI (570820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.3 % | Pressure: 1014.35 hPa[0m
+[0;32mI (570820) MAIN: BME280 -> Temp: 27.0 C | Humidity: 25.0 % | Pressure: 1014.35 hPa[0m
+[0;32mI (575820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 31.2 % | Pressure: 1014.40 hPa[0m
+[0;32mI (575820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.9 % | Pressure: 1014.40 hPa[0m
+[0;32mI (580820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.2 % | Pressure: 1014.34 hPa[0m
+[0;32mI (580820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.9 % | Pressure: 1014.34 hPa[0m
+[0;32mI (585820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.2 % | Pressure: 1014.37 hPa[0m
+[0;32mI (585820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.9 % | Pressure: 1014.37 hPa[0m
+[0;32mI (590820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.2 % | Pressure: 1014.34 hPa[0m
+[0;32mI (590820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.1 % | Pressure: 1014.34 hPa[0m
+[0;32mI (595820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.2 % | Pressure: 1014.36 hPa[0m
+[0;32mI (595820) MAIN: BME280 -> Temp: 27.0 C | Humidity: 24.9 % | Pressure: 1014.36 hPa[0m
+[0;32mI (600820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.2 % | Pressure: 1014.39 hPa[0m
+[0;32mI (600820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.8 % | Pressure: 1014.39 hPa[0m
+[0;32mI (605820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.2 % | Pressure: 1014.35 hPa[0m
+[0;32mI (605820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.8 % | Pressure: 1014.35 hPa[0m
+[0;32mI (610820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.32 hPa[0m
+[0;32mI (610820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.8 % | Pressure: 1014.32 hPa[0m
+[0;32mI (615820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.35 hPa[0m
+[0;32mI (615820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.8 % | Pressure: 1014.35 hPa[0m
+[0;32mI (620820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.38 hPa[0m
+[0;32mI (620820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.8 % | Pressure: 1014.38 hPa[0m
+[0;32mI (625820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.31 hPa[0m
+[0;32mI (625820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.8 % | Pressure: 1014.31 hPa[0m
+[0;32mI (630820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.41 hPa[0m
+[0;32mI (630820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.8 % | Pressure: 1014.41 hPa[0m
+[0;32mI (635820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.39 hPa[0m
+[0;32mI (635820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.8 % | Pressure: 1014.39 hPa[0m
+[0;32mI (640820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.34 hPa[0m
+[0;32mI (640820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.7 % | Pressure: 1014.34 hPa[0m
+[0;32mI (645820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.0 % | Pressure: 1014.38 hPa[0m
+[0;32mI (645820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.0 % | Pressure: 1014.38 hPa[0m
+[0;32mI (650820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.0 % | Pressure: 1014.41 hPa[0m
+[0;32mI (650820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.7 % | Pressure: 1014.41 hPa[0m
+[0;32mI (655820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.38 hPa[0m
+[0;32mI (655820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.7 % | Pressure: 1014.38 hPa[0m
+[0;32mI (660820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.0 % | Pressure: 1014.35 hPa[0m
+[0;32mI (660820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.8 % | Pressure: 1014.35 hPa[0m
+[0;32mI (665820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.39 hPa[0m
+[0;32mI (665820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.8 % | Pressure: 1014.39 hPa[0m
+[0;32mI (670820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.33 hPa[0m
+[0;32mI (670820) MAIN: BME280 -> Temp: 27.0 C | Humidity: 24.7 % | Pressure: 1014.33 hPa[0m
+[0;32mI (675820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.0 % | Pressure: 1014.33 hPa[0m
+[0;32mI (675820) MAIN: BME280 -> Temp: 27.0 C | Humidity: 24.8 % | Pressure: 1014.33 hPa[0m
+[0;32mI (680820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.26 hPa[0m
+[0;32mI (680820) MAIN: BME280 -> Temp: 27.0 C | Humidity: 24.8 % | Pressure: 1014.26 hPa[0m
+[0;32mI (685820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.0 % | Pressure: 1014.33 hPa[0m
+[0;32mI (685820) MAIN: BME280 -> Temp: 27.0 C | Humidity: 24.8 % | Pressure: 1014.33 hPa[0m
+[0;32mI (690820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.42 hPa[0m
+[0;32mI (690820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.6 % | Pressure: 1014.42 hPa[0m
+[0;32mI (695820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.0 % | Pressure: 1014.36 hPa[0m
+[0;32mI (695820) MAIN: BME280 -> Temp: 27.0 C | Humidity: 24.8 % | Pressure: 1014.36 hPa[0m
+[0;32mI (700820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.0 % | Pressure: 1014.36 hPa[0m
+[0;32mI (700820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.3 % | Pressure: 1014.36 hPa[0m
+[0;32mI (705820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.36 hPa[0m
+[0;32mI (705820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.6 % | Pressure: 1014.36 hPa[0m
+[0;32mI (710820) MAIN: CO2: 0 ppm | Temp: 23.6 C | Humidity: 31.1 % | Pressure: 1014.38 hPa[0m
+[0;32mI (710820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.7 % | Pressure: 1014.38 hPa[0m
+[0;32mI (715820) MAIN: CO2: 0 ppm | Temp: 23.6 C | Humidity: 31.0 % | Pressure: 1014.42 hPa[0m
+[0;32mI (715820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.7 % | Pressure: 1014.42 hPa[0m
+[0;32mI (720820) MAIN: CO2: 0 ppm | Temp: 23.6 C | Humidity: 31.1 % | Pressure: 1014.34 hPa[0m
+[0;32mI (720820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.7 % | Pressure: 1014.34 hPa[0m
+[0;32mI (725820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.37 hPa[0m
+[0;32mI (725820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.7 % | Pressure: 1014.37 hPa[0m
+[0;32mI (730820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.0 % | Pressure: 1014.36 hPa[0m
+[0;32mI (730820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.6 % | Pressure: 1014.36 hPa[0m
+[0;32mI (735820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.0 % | Pressure: 1014.26 hPa[0m
+[0;32mI (735820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.7 % | Pressure: 1014.26 hPa[0m
+[0;32mI (740820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.0 % | Pressure: 1014.37 hPa[0m
+[0;32mI (740820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.7 % | Pressure: 1014.37 hPa[0m
+[0;32mI (745820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.0 % | Pressure: 1014.29 hPa[0m
+[0;32mI (745820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.7 % | Pressure: 1014.29 hPa[0m
+[0;32mI (750820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.0 % | Pressure: 1014.39 hPa[0m
+[0;32mI (750820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.7 % | Pressure: 1014.39 hPa[0m
+[0;32mI (755820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.0 % | Pressure: 1014.34 hPa[0m
+[0;32mI (755820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.7 % | Pressure: 1014.34 hPa[0m
+[0;32mI (760820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 30.9 % | Pressure: 1014.33 hPa[0m
+[0;32mI (760820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.4 % | Pressure: 1014.33 hPa[0m
+[0;32mI (765820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.0 % | Pressure: 1014.38 hPa[0m
+[0;32mI (765820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.8 % | Pressure: 1014.38 hPa[0m
+[0;32mI (770820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.33 hPa[0m
+[0;32mI (770820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 24.8 % | Pressure: 1014.33 hPa[0m
+[0;32mI (775820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 31.1 % | Pressure: 1014.41 hPa[0m
+[0;32mI (775820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.1 % | Pressure: 1014.41 hPa[0m
+[0;32mI (780820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 38.6 % | Pressure: 1014.41 hPa[0m
+[0;32mI (780820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.5 % | Pressure: 1014.41 hPa[0m
+[0;32mI (785820) MAIN: CO2: 0 ppm | Temp: 23.7 C | Humidity: 51.2 % | Pressure: 1014.45 hPa[0m
+[0;32mI (785820) MAIN: BME280 -> Temp: 27.1 C | Humidity: 25.8 % | Pressure: 1014.45 hPa[0m
+[0;32mI (790820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 60.8 % | Pressure: 1014.42 hPa[0m
+[0;32mI (790820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 26.5 % | Pressure: 1014.42 hPa[0m
+[0;32mI (795820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 64.6 % | Pressure: 1014.41 hPa[0m
+[0;32mI (795820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 26.5 % | Pressure: 1014.41 hPa[0m
+[0;32mI (800820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 58.0 % | Pressure: 1014.34 hPa[0m
+[0;32mI (800820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 26.3 % | Pressure: 1014.34 hPa[0m
+[0;32mI (805820) MAIN: CO2: 0 ppm | Temp: 23.8 C | Humidity: 51.0 % | Pressure: 1014.32 hPa[0m
+[0;32mI (805820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 26.2 % | Pressure: 1014.32 hPa[0m
+[0;32mI (810820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 46.4 % | Pressure: 1014.34 hPa[0m
+[0;32mI (810820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 25.8 % | Pressure: 1014.34 hPa[0m
+[0;32mI (815820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 42.5 % | Pressure: 1014.33 hPa[0m
+[0;32mI (815820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 26.0 % | Pressure: 1014.33 hPa[0m
+[0;32mI (820820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 39.7 % | Pressure: 1014.36 hPa[0m
+[0;32mI (820820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 25.9 % | Pressure: 1014.36 hPa[0m
+[0;32mI (825820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 37.8 % | Pressure: 1014.32 hPa[0m
+[0;32mI (825820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 25.8 % | Pressure: 1014.32 hPa[0m
+[0;32mI (830820) MAIN: CO2: 0 ppm | Temp: 23.9 C | Humidity: 36.3 % | Pressure: 1014.37 hPa[0m
+[0;32mI (830820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 25.7 % | Pressure: 1014.37 hPa[0m
+[0;32mI (835820) MAIN: CO2: 0 ppm | Temp: 24.0 C | Humidity: 35.3 % | Pressure: 1014.37 hPa[0m
+[0;32mI (835820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 25.4 % | Pressure: 1014.37 hPa[0m
+[0;32mI (840820) MAIN: CO2: 0 ppm | Temp: 24.0 C | Humidity: 34.6 % | Pressure: 1014.34 hPa[0m
+[0;32mI (840820) MAIN: BME280 -> Temp: 27.2 C | Humidity: 25.6 % | Pressure: 1014.34 hPa[0m
+[0;32mI (845820) MAIN: CO2: 0 ppm | Temp: 24.0 C | Humidity: 33.4 % | Pressure: 1014.36 hPa[0m
+[0;32mI (845820) MAIN: BME280 -> Temp: 27.3 C | Humidity: 25.4 % | Pressure: 1014.36 hPa[0m
+[0;32mI (850820) MAIN: CO2: 0 ppm | Temp: 24.0 C | Humidity: 32.9 % | Pressure: 1014.33 hPa[0m
+[0;32mI (850820) MAIN: BME280 -> Temp: 27.3 C | Humidity: 25.4 % | Pressure: 1014.33 hPa[0m
+[0;32mI (855820) MAIN: CO2: 0 ppm | Temp: 24.0 C | Humidity: 32.6 % | Pressure: 1014.36 hPa[0m
+[0;32mI (855820) MAIN: BME280 -> Temp: 27.3 C | Humidity: 25.5 % | Pressure: 1014.36 hPa[0m
+[0;32mI (860820) MAIN: CO2: 0 ppm | Temp: 24.0 C | Humidity: 32.4 % | Pressure: 1014.33 hPa[0m
+[0;32mI (860820) MAIN: BME280 -> Temp: 27.3 C | Humidity: 25.3 % | Pressure: 1014.33 hPa[0m
+[0;32mI (865820) MAIN: CO2: 0 ppm | Temp: 24.0 C | Humidity: 32.1 % | Pressure: 1014.41 hPa[0m
+[0;32mI (865820) MAIN: BME280 -> Temp: 27.3 C | Humidity: 25.3 % | Pressure: 1014.41 hPa[0m

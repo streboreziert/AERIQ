@@ -1,0 +1,70 @@
+ESP-ROM:esp32c3-eco7-20230720
+Build:Jul 20 2023
+rst:0x15 (USB_UART_CHIP_RESET),boot:0xd (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40382bfa
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fcd5820,len:0x1738
+load:0x403cc710,len:0xb9c
+load:0x403ce710,len:0x2e40
+entry 0x403cc71a
+[0;32mI (24) boot: ESP-IDF v5.2-dirty 2nd stage bootloader[0m
+[0;32mI (24) boot: compile time Feb 17 2026 15:08:22[0m
+[0;32mI (25) boot: chip revision: v1.1[0m
+[0;32mI (28) boot.esp32c3: SPI Speed      : 80MHz[0m
+[0;32mI (32) boot.esp32c3: SPI Mode       : DIO[0m
+[0;32mI (37) boot.esp32c3: SPI Flash Size : 2MB[0m
+[0;32mI (42) boot: Enabling RNG early entropy source...[0m
+[0;32mI (47) boot: Partition Table:[0m
+[0;32mI (51) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (58) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (66) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (73) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (81) boot: End of partition table[0m
+[0;32mI (85) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0c0a0h ( 49312) map[0m
+[0;32mI (101) esp_image: segment 1: paddr=0001c0c8 vaddr=3fc8c800 size=01264h (  4708) load[0m
+[0;32mI (102) esp_image: segment 2: paddr=0001d334 vaddr=40380000 size=02ce4h ( 11492) load[0m
+[0;32mI (112) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=1f408h (128008) map[0m
+[0;32mI (139) esp_image: segment 4: paddr=0003f430 vaddr=40382ce4 size=09afch ( 39676) load[0m
+[0;32mI (150) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (150) boot: Disabling RNG early entropy source...[0m
+[0;32mI (162) cpu_start: Unicore app[0m
+[0;32mI (170) cpu_start: Pro cpu start user code[0m
+[0;32mI (170) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (170) cpu_start: Application information:[0m
+[0;32mI (173) cpu_start: Project name:     aeriq[0m
+[0;32mI (178) cpu_start: App version:      1[0m
+[0;32mI (183) cpu_start: Compile time:     Feb 17 2026 15:05:58[0m
+[0;32mI (189) cpu_start: ELF file SHA256:  63557947c...[0m
+[0;32mI (194) cpu_start: ESP-IDF:          v5.2-dirty[0m
+[0;32mI (199) cpu_start: Min chip rev:     v0.3[0m
+[0;32mI (204) cpu_start: Max chip rev:     v1.99 [0m
+[0;32mI (209) cpu_start: Chip rev:         v1.1[0m
+[0;32mI (214) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (221) heap_init: At 3FC8EA30 len 000315D0 (197 KiB): RAM[0m
+[0;32mI (227) heap_init: At 3FCC0000 len 0001C710 (113 KiB): Retention RAM[0m
+[0;32mI (234) heap_init: At 3FCDC710 len 0000294C (10 KiB): Retention RAM[0m
+[0;32mI (241) heap_init: At 50000010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (248) spi_flash: detected chip: generic[0m
+[0;32mI (252) spi_flash: flash io: dio[0m
+[0;33mW (256) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;33mW (269) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`[0m
+[0;32mI (280) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (286) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (294) main_task: Started on CPU0[0m
+[0;32mI (294) main_task: Calling app_main()[0m
+[0;32mI (294) AERIQ: AERIQ Starting...[0m
+[0;32mI (304) AERIQ: Data UART initialized on TX:GPIO21 RX:GPIO20 @ 115200 baud[0m
+[0;32mI (304) AERIQ: I2C initialized on SDA:GPIO4 SCL:GPIO5[0m
+[0;32mI (304) AERIQ: Initializing SCD41...[0m
+[0;32mI (804) AERIQ: SCD41 periodic measurement started (5 s interval)[0m
+[0;32mI (804) AERIQ: Initializing BME280...[0m
+[0;32mI (804) AERIQ: BME280 Chip ID: 0x60 (expected 0x60)[0m
+[0;32mI (814) AERIQ: BME280 initialized (calibration loaded)[0m
+[0;32mI (814) AERIQ: Starting sensor task...[0m
+[0;32mI (814) AERIQ: Waiting 10 s for first SCD41 measurement...[0m
+[0;32mI (824) main_task: Returned from app_main()[0m
+[0;32mI (10824) AERIQ: SCD41  | CO2:    0 ppm  Temp:  26.9 C  RH: 27.8 %[0m
+[0;32mI (10824) AERIQ: BME280 | Temp:  26.3 C  RH: 28.4 %  Pressure: 1014.44 hPa[0m
+[0;32mI (15834) AERIQ: SCD41  | CO2:    0 ppm  Temp:  26.6 C  RH: 28.2 %[0m
+[0;32mI (15834) AERIQ: BME280 | Temp:  26.3 C  RH: 28.3 %  Pressure: 1014.45 hPa[0m

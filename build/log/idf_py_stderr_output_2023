@@ -1,0 +1,5 @@
+[0;33m--- esp-idf-monitor 1.9.0 on /dev/cu.usbmodem101 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0m--- 0x42006bb6: [0;33muart_ll_get_txfifo_len[0m[0m at [0;32m/Users/robertstreize/esp/esp-idf/components/hal/esp32c3/include/hal/uart_ll.h[0m[0m:[1;31m403[0m
+[0m--- (inlined by) [0;33muart_tx_char[0m[0m at [0;32m/Users/robertstreize/esp/esp-idf/components/vfs/vfs_uart.c[0m[0m:[1;31m165[0m
+[0m

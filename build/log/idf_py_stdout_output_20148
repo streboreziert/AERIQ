@@ -1,0 +1,142 @@
+ESP-ROM:esp32c3-eco7-20230720
+Build:Jul 20 2023
+rst:0x15 (USB_UART_CHIP_RESET),boot:0x5 (DOWNLOAD(USB/UART0))
+Saved PC:0x40047ea4
+waiting for download
+[0;32mI (816) AERIQ: SCD41 periodic measurement started (5 s interval)[0m
+[0;32mI (816) AERIQ: Initializing BME280...[0m
+[0;32mI (816) AERIQ: BME280 Chip ID: 0x60 (expected 0x60)[0m
+[0;32mI (826) AERIQ: BME280 initialized (calibration loaded)[0m
+[0;32mI (826) AERIQ: Starting sensor task...[0m
+[0;32mI (826) AERIQ: Waiting 10 s for first SCD41 measurement...[0m
+[0;32mI (836) main_task: Returned from app_main()[0m
+[0;32mI (10836) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.9 C  RH: 32.9 %[0m
+[0;32mI (10836) AERIQ: BME280 | Temp:  25.0 C  RH: 30.1 %  Pressure: 1014.73 hPa[0m
+[0;32mI (15846) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.8 C  RH: 32.9 %[0m
+[0;32mI (15846) AERIQ: BME280 | Temp:  25.1 C  RH: 30.0 %  Pressure: 1014.78 hPa[0m
+[0;32mI (20856) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.8 C  RH: 32.6 %[0m
+[0;32mI (20856) AERIQ: BME280 | Temp:  25.1 C  RH: 30.0 %  Pressure: 1014.79 hPa[0m
+[0;32mI (25866) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.7 C  RH: 32.6 %[0m
+[0;32mI (25866) AERIQ: BME280 | Temp:  25.3 C  RH: 30.4 %  Pressure: 1014.73 hPa[0m
+[0;32mI (30876) AERIQ: SCD41  | CO2: 1995 ppm  Temp:  25.1 C  RH: 43.0 %[0m
+[0;32mI (30876) AERIQ: BME280 | Temp:  25.5 C  RH: 30.7 %  Pressure: 1014.71 hPa[0m
+[0;32mI (35886) AERIQ: SCD41  | CO2: 2090 ppm  Temp:  25.4 C  RH: 55.6 %[0m
+[0;32mI (35886) AERIQ: BME280 | Temp:  25.7 C  RH: 31.7 %  Pressure: 1014.81 hPa[0m
+[0;32mI (40896) AERIQ: SCD41  | CO2: 2029 ppm  Temp:  25.5 C  RH: 59.1 %[0m
+[0;32mI (40896) AERIQ: BME280 | Temp:  25.8 C  RH: 31.5 %  Pressure: 1014.78 hPa[0m
+[0;32mI (45906) AERIQ: SCD41  | CO2:    0 ppm  Temp:  25.5 C  RH: 59.6 %[0m
+[0;32mI (45906) AERIQ: BME280 | Temp:  25.9 C  RH: 32.0 %  Pressure: 1014.80 hPa[0m
+[0;32mI (50916) AERIQ: SCD41  | CO2:    0 ppm  Temp:  25.4 C  RH: 59.8 %[0m
+[0;32mI (50916) AERIQ: BME280 | Temp:  26.0 C  RH: 31.2 %  Pressure: 1014.80 hPa[0m
+[0;32mI (55926) AERIQ: SCD41  | CO2:    0 ppm  Temp:  25.3 C  RH: 58.3 %[0m
+[0;32mI (55926) AERIQ: BME280 | Temp:  26.1 C  RH: 30.8 %  Pressure: 1014.76 hPa[0m
+[0;32mI (60936) AERIQ: SCD41  | CO2:    0 ppm  Temp:  25.1 C  RH: 50.5 %[0m
+[0;32mI (60936) AERIQ: BME280 | Temp:  26.1 C  RH: 30.4 %  Pressure: 1014.77 hPa[0m
+[0;32mI (65946) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.9 C  RH: 44.8 %[0m
+[0;32mI (65946) AERIQ: BME280 | Temp:  26.2 C  RH: 30.1 %  Pressure: 1014.85 hPa[0m
+[0;32mI (70956) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.8 C  RH: 41.0 %[0m
+[0;32mI (70956) AERIQ: BME280 | Temp:  26.3 C  RH: 30.1 %  Pressure: 1014.79 hPa[0m
+[0;32mI (75966) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.7 C  RH: 38.6 %[0m
+[0;32mI (75966) AERIQ: BME280 | Temp:  26.3 C  RH: 29.5 %  Pressure: 1014.76 hPa[0m
+[0;32mI (80976) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.7 C  RH: 37.0 %[0m
+[0;32mI (80976) AERIQ: BME280 | Temp:  26.4 C  RH: 29.2 %  Pressure: 1014.77 hPa[0m
+[0;32mI (85986) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.6 C  RH: 35.7 %[0m
+[0;32mI (85986) AERIQ: BME280 | Temp:  26.4 C  RH: 28.9 %  Pressure: 1014.77 hPa[0m
+[0;32mI (90996) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.5 C  RH: 34.8 %[0m
+[0;32mI (90996) AERIQ: BME280 | Temp:  26.5 C  RH: 28.8 %  Pressure: 1014.73 hPa[0m
+[0;32mI (96006) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.5 C  RH: 34.1 %[0m
+[0;32mI (96006) AERIQ: BME280 | Temp:  26.5 C  RH: 28.6 %  Pressure: 1014.76 hPa[0m
+[0;32mI (101016) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.4 C  RH: 33.6 %[0m
+[0;32mI (101016) AERIQ: BME280 | Temp:  26.5 C  RH: 28.3 %  Pressure: 1014.74 hPa[0m
+[0;32mI (106026) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.4 C  RH: 33.2 %[0m
+[0;32mI (106026) AERIQ: BME280 | Temp:  26.6 C  RH: 28.2 %  Pressure: 1014.74 hPa[0m
+[0;32mI (111036) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.3 C  RH: 32.9 %[0m
+[0;32mI (111036) AERIQ: BME280 | Temp:  26.6 C  RH: 28.0 %  Pressure: 1014.72 hPa[0m
+[0;32mI (116046) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.3 C  RH: 32.6 %[0m
+[0;32mI (116046) AERIQ: BME280 | Temp:  26.6 C  RH: 27.8 %  Pressure: 1014.72 hPa[0m
+[0;32mI (121056) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.3 C  RH: 32.4 %[0m
+[0;32mI (121056) AERIQ: BME280 | Temp:  26.7 C  RH: 27.7 %  Pressure: 1014.69 hPa[0m
+[0;32mI (126066) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.3 C  RH: 32.3 %[0m
+[0;32mI (126066) AERIQ: BME280 | Temp:  26.7 C  RH: 27.2 %  Pressure: 1014.75 hPa[0m
+[0;32mI (131076) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.2 C  RH: 32.1 %[0m
+[0;32mI (131076) AERIQ: BME280 | Temp:  26.8 C  RH: 27.4 %  Pressure: 1014.72 hPa[0m
+[0;32mI (136086) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.2 C  RH: 31.9 %[0m
+[0;32mI (136086) AERIQ: BME280 | Temp:  26.8 C  RH: 27.3 %  Pressure: 1014.68 hPa[0m
+[0;32mI (141096) AERIQ: SCD41  | CO2:    0 ppm  Temp:  24.2 C  RH: 31.9 %[0m
+[0;32mI (141096) AERIQ: BME280 | Temp:  26.8 C  RH: 27.8 %  Pressure: 1014.66 hPa[0m
+[0;33mW (146106) AERIQ: SCD41  | data not ready yet[0m
+[0;32mI (146106) AERIQ: BME280 | Temp:  26.8 C  RH: 27.1 %  Pressure: 1014.65 hPa[0m
+[0;33mW (151116) AERIQ: SCD41  | data not ready yet[0m
+[0;32mI (151116) AERIQ: BME280 | Temp:  26.9 C  RH: 27.1 %  Pressure: 1014.65 hPa[0m
+[0;33mW (156126) AERIQ: SCD41  | data not ready yet[0m
+[0;32mI (156126) AERIQ: BME280 | Temp:  26.9 C  RH: 27.0 %  Pressure: 1014.70 hPa[0m
+[0;32mI (816) AERIQ: SCD41 periodic measurement started (5 s interval)[0m
+[0;32mI (816) AERIQ: Initializing BME280...[0m
+[0;32mI (816) AERIQ: BME280 Chip ID: 0x60 (expected 0x60)[0m
+[0;32mI (826) AERIQ: BME280 initialized (calibration loaded)[0m
+[0;32mI (826) AERIQ: Starting sensor task...[0m
+[0;32mI (826) AERIQ: Waiting 10 s for first SCD41 measurement...[0m
+[0;32mI (836) main_task: Returned from app_main()[0m
+[0;32mI (10836) AERIQ: SCD41  | CO2:  412 ppm  Temp:  27.2 C  RH: 29.6 %[0m
+[0;32mI (10836) AERIQ: BME280 | Temp:  26.9 C  RH: 27.0 %  Pressure: 1014.72 hPa[0m
+[0;32mI (15846) AERIQ: SCD41  | CO2:  411 ppm  Temp:  27.0 C  RH: 30.1 %[0m
+[0;32mI (15846) AERIQ: BME280 | Temp:  26.9 C  RH: 27.3 %  Pressure: 1014.72 hPa[0m
+[0;32mI (20856) AERIQ: SCD41  | CO2:  420 ppm  Temp:  26.9 C  RH: 30.6 %[0m
+[0;32mI (20856) AERIQ: BME280 | Temp:  26.9 C  RH: 26.4 %  Pressure: 1014.63 hPa[0m
+[0;32mI (25866) AERIQ: SCD41  | CO2:  289 ppm  Temp:  26.7 C  RH: 31.0 %[0m
+[0;32mI (25866) AERIQ: BME280 | Temp:  27.0 C  RH: 26.8 %  Pressure: 1014.71 hPa[0m
+[0;32mI (30876) AERIQ: SCD41  | CO2:  306 ppm  Temp:  26.7 C  RH: 31.5 %[0m
+[0;32mI (30876) AERIQ: BME280 | Temp:  27.1 C  RH: 27.6 %  Pressure: 1014.68 hPa[0m
+[0;32mI (35886) AERIQ: SCD41  | CO2:  316 ppm  Temp:  26.6 C  RH: 31.7 %[0m
+[0;32mI (35886) AERIQ: BME280 | Temp:  27.1 C  RH: 28.0 %  Pressure: 1014.68 hPa[0m
+[0;32mI (40896) AERIQ: SCD41  | CO2:  377 ppm  Temp:  26.5 C  RH: 32.0 %[0m
+[0;32mI (40896) AERIQ: BME280 | Temp:  27.1 C  RH: 28.3 %  Pressure: 1014.72 hPa[0m
+[0;32mI (45906) AERIQ: SCD41  | CO2:  451 ppm  Temp:  26.4 C  RH: 32.5 %[0m
+[0;32mI (45906) AERIQ: BME280 | Temp:  27.0 C  RH: 28.4 %  Pressure: 1014.63 hPa[0m
+[0;32mI (50916) AERIQ: SCD41  | CO2:  451 ppm  Temp:  26.1 C  RH: 32.8 %[0m
+[0;32mI (50916) AERIQ: BME280 | Temp:  27.0 C  RH: 28.1 %  Pressure: 1014.70 hPa[0m
+[0;32mI (55926) AERIQ: SCD41  | CO2:  452 ppm  Temp:  25.9 C  RH: 33.3 %[0m
+[0;32mI (55926) AERIQ: BME280 | Temp:  27.0 C  RH: 28.0 %  Pressure: 1014.66 hPa[0m
+[0;32mI (60936) AERIQ: SCD41  | CO2:  455 ppm  Temp:  25.7 C  RH: 33.7 %[0m
+[0;32mI (60936) AERIQ: BME280 | Temp:  27.0 C  RH: 28.0 %  Pressure: 1014.69 hPa[0m
+[0;32mI (65946) AERIQ: SCD41  | CO2:  455 ppm  Temp:  25.5 C  RH: 34.1 %[0m
+[0;32mI (65946) AERIQ: BME280 | Temp:  27.0 C  RH: 28.3 %  Pressure: 1014.67 hPa[0m
+[0;32mI (70956) AERIQ: SCD41  | CO2:  459 ppm  Temp:  25.4 C  RH: 34.3 %[0m
+[0;32mI (70956) AERIQ: BME280 | Temp:  27.0 C  RH: 28.2 %  Pressure: 1014.74 hPa[0m
+[0;32mI (75966) AERIQ: SCD41  | CO2:  461 ppm  Temp:  25.3 C  RH: 34.6 %[0m
+[0;32mI (75966) AERIQ: BME280 | Temp:  27.0 C  RH: 28.2 %  Pressure: 1014.70 hPa[0m
+[0;32mI (80976) AERIQ: SCD41  | CO2:  464 ppm  Temp:  25.2 C  RH: 34.8 %[0m
+[0;32mI (80976) AERIQ: BME280 | Temp:  27.0 C  RH: 28.6 %  Pressure: 1014.72 hPa[0m
+[0;32mI (85986) AERIQ: SCD41  | CO2:  465 ppm  Temp:  25.1 C  RH: 35.0 %[0m
+[0;32mI (85986) AERIQ: BME280 | Temp:  27.0 C  RH: 28.2 %  Pressure: 1014.70 hPa[0m
+[0;32mI (90996) AERIQ: SCD41  | CO2:  460 ppm  Temp:  25.1 C  RH: 35.3 %[0m
+[0;32mI (90996) AERIQ: BME280 | Temp:  27.2 C  RH: 29.4 %  Pressure: 1014.68 hPa[0m
+[0;32mI (96006) AERIQ: SCD41  | CO2:    0 ppm  Temp:  25.3 C  RH: 35.6 %[0m
+[0;32mI (96006) AERIQ: BME280 | Temp:  27.2 C  RH: 29.6 %  Pressure: 1014.68 hPa[0m
+[0;32mI (101016) AERIQ: SCD41  | CO2:    0 ppm  Temp:  25.3 C  RH: 35.1 %[0m
+[0;32mI (101016) AERIQ: BME280 | Temp:  27.3 C  RH: 29.5 %  Pressure: 1014.66 hPa[0m
+[0;32mI (106026) AERIQ: SCD41  | CO2:  455 ppm  Temp:  25.3 C  RH: 36.2 %[0m
+[0;32mI (106026) AERIQ: BME280 | Temp:  27.2 C  RH: 29.9 %  Pressure: 1014.66 hPa[0m
+[0;32mI (111036) AERIQ: SCD41  | CO2:  756 ppm  Temp:  25.3 C  RH: 38.5 %[0m
+[0;32mI (111036) AERIQ: BME280 | Temp:  27.2 C  RH: 29.4 %  Pressure: 1014.68 hPa[0m
+[0;32mI (116046) AERIQ: SCD41  | CO2:  991 ppm  Temp:  25.2 C  RH: 38.6 %[0m
+[0;32mI (116046) AERIQ: BME280 | Temp:  27.3 C  RH: 28.9 %  Pressure: 1014.66 hPa[0m
+[0;32mI (121056) AERIQ: SCD41  | CO2: 1069 ppm  Temp:  25.1 C  RH: 38.6 %[0m
+[0;32mI (121056) AERIQ: BME280 | Temp:  27.3 C  RH: 28.5 %  Pressure: 1014.69 hPa[0m
+[0;33mW (126066) AERIQ: SCD41  | data not ready yet[0m
+[0;32mI (126066) AERIQ: BME280 | Temp:  27.4 C  RH: 28.5 %  Pressure: 1014.74 hPa[0m
+[0;33mW (131076) AERIQ: SCD41  | data not ready yet[0m
+[0;32mI (131076) AERIQ: BME280 | Temp:  27.4 C  RH: 29.0 %  Pressure: 1014.65 hPa[0m
+[0;32mI (810) AERIQ: SCD41 periodic measurement started (5 s interval)[0m
+[0;32mI (810) AERIQ: Initializing BME280...[0m
+[0;32mI (810) AERIQ: BME280 Chip ID: 0x60 (expected 0x60)[0m
+[0;32mI (820) AERIQ: BME280 initialized (calibration loaded)[0m
+[0;32mI (820) AERIQ: Starting sensor task...[0m
+[0;32mI (820) AERIQ: Waiting 10 s for first SCD41 measurement...[0m
+[0;32mI (830) main_task: Returned from app_main()[0m
+[0;32mI (10830) AERIQ: SCD41  | CO2: 1447 ppm  Temp:  27.9 C  RH: 32.5 %[0m
+[0;32mI (10830) AERIQ: BME280 | Temp:  27.4 C  RH: 28.4 %  Pressure: 1014.74 hPa[0m
+[0;32mI (15840) AERIQ: SCD41  | CO2: 1440 ppm  Temp:  27.7 C  RH: 32.9 %[0m
+[0;32mI (15840) AERIQ: BME280 | Temp:  27.4 C  RH: 28.4 %  Pressure: 1014.66 hPa[0m
+[0;32mI (20850) AERIQ: SCD41  | CO2: 1416 ppm  Temp:  27.4 C  RH: 33.3 %[0m
+[0;32mI (20850) AERIQ: BME280 | Temp:  27.4 C  RH: 28.1 %  Pressure: 1014.72 hPa[0m
