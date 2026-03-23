@@ -7,6 +7,12 @@
 #include "esp_err.h"
 #include "driver/i2c.h"
 #include "driver/uart.h"
+#include "freertos/event_groups.h"
+#include "nvs_flash.h"
+#include "esp_wifi.h"
+#include "esp_netif.h"
+#include "esp_event.h"
+#include "esp_http_client.h"
 
 static const char *TAG = "AERIQ";
 
@@ -24,6 +30,11 @@ static const char *TAG = "AERIQ";
 #define DATA_UART_TX_PIN    GPIO_NUM_21
 #define DATA_UART_RX_PIN    GPIO_NUM_20
 #define DATA_UART_BUF_SIZE  256
+
+// ── WiFi & HTTP config ──────────────────────────────────────────────
+#define WIFI_SSID           "AERIQ"
+#define WIFI_PASS           "aeriq1234"
+#define PI_URL              "http://192.168.4.1:8000/readings"
 
 // ── SCD41 definitions ───────────────────────────────────────────────
 // Periodic measurement interval = 5 000 ms
@@ -78,6 +89,10 @@ typedef struct {
 static bme280_calib_t bme280_calib;
 static int32_t t_fine;
 
+// ── WiFi state ──────────────────────────────────────────────────────
+static EventGroupHandle_t wifi_event_group;
+#define WIFI_CONNECTED_BIT BIT0
+
 static void data_uart_init(void)
 {
     const uart_config_t uart_config = {
@@ -123,7 +138,7 @@ static void data_uart_send(bool scd_valid,
 {
     char frame[160];
     int len = snprintf(frame, sizeof(frame),
-                       "AERIQ|SCD=%d|CO2=%u|ST=%.2f|SH=%.2f|BME=%d|BT=%.2f|BH=%.2f|BP=%.2f\\r\\n",
+                       "AERIQ|SCD=%d|CO2=%u|ST=%.2f|SH=%.2f|BME=%d|BT=%.2f|BH=%.2f|BP=%.2f\r\n",
                        scd_valid ? 1 : 0,
                        co2,
                        scd_t,
@@ -136,6 +151,85 @@ static void data_uart_send(bool scd_valid,
     if (len > 0) {
         uart_write_bytes(DATA_UART_NUM, frame, len);
     }
+}
+
+// ── WiFi ────────────────────────────────────────────────────────────
+static void wifi_event_handler(void *arg, esp_event_base_t event_base,
+                               int32_t event_id, void *event_data)
+{
+    if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
+        esp_wifi_connect();
+    } else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
+        xEventGroupClearBits(wifi_event_group, WIFI_CONNECTED_BIT);
+        ESP_LOGW(TAG, "WiFi disconnected, reconnecting...");
+        esp_wifi_connect();
+    } else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
+        ip_event_got_ip_t *event = (ip_event_got_ip_t *)event_data;
+        ESP_LOGI(TAG, "Got IP: " IPSTR, IP2STR(&event->ip_info.ip));
+        xEventGroupSetBits(wifi_event_group, WIFI_CONNECTED_BIT);
+    }
+}
+
+static void wifi_init_sta(void)
+{
+    wifi_event_group = xEventGroupCreate();
+
+    ESP_ERROR_CHECK(esp_netif_init());
+    ESP_ERROR_CHECK(esp_event_loop_create_default());
+    esp_netif_create_default_wifi_sta();
+
+    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+    ESP_ERROR_CHECK(esp_wifi_init(&cfg));
+
+    ESP_ERROR_CHECK(esp_event_handler_instance_register(
+        WIFI_EVENT, ESP_EVENT_ANY_ID, &wifi_event_handler, NULL, NULL));
+    ESP_ERROR_CHECK(esp_event_handler_instance_register(
+        IP_EVENT, IP_EVENT_STA_GOT_IP, &wifi_event_handler, NULL, NULL));
+
+    wifi_config_t wifi_config = {
+        .sta = {
+            .ssid = WIFI_SSID,
+            .password = WIFI_PASS,
+        },
+    };
+    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config));
+    ESP_ERROR_CHECK(esp_wifi_start());
+
+    ESP_LOGI(TAG, "WiFi STA init done, connecting to '%s'...", WIFI_SSID);
+}
+
+// ── HTTP POST to Pi ─────────────────────────────────────────────────
+static void http_post_readings(uint16_t co2, float scd_t, float scd_h,
+                               float bme_t, float bme_h, float bme_p)
+{
+    if (!(xEventGroupGetBits(wifi_event_group) & WIFI_CONNECTED_BIT)) {
+        ESP_LOGW(TAG, "WiFi not connected, skipping HTTP POST");
+        return;
+    }
+
+    char json[256];
+    snprintf(json, sizeof(json),
+             "{\"temperature\":%.1f,\"humidity\":%.1f,\"co2\":%u,"
+             "\"pressure\":%.2f,\"bme_temperature\":%.1f,\"bme_humidity\":%.1f}",
+             scd_t, scd_h, co2, bme_p, bme_t, bme_h);
+
+    esp_http_client_config_t config = {
+        .url = PI_URL,
+        .method = HTTP_METHOD_POST,
+        .timeout_ms = 3000,
+    };
+    esp_http_client_handle_t client = esp_http_client_init(&config);
+    esp_http_client_set_header(client, "Content-Type", "application/json");
+    esp_http_client_set_post_field(client, json, strlen(json));
+
+    esp_err_t err = esp_http_client_perform(client);
+    if (err == ESP_OK) {
+        ESP_LOGI(TAG, "HTTP POST OK (%d)", esp_http_client_get_status_code(client));
+    } else {
+        ESP_LOGE(TAG, "HTTP POST failed: %s", esp_err_to_name(err));
+    }
+    esp_http_client_cleanup(client);
 }
 
 // ── I2C init ────────────────────────────────────────────────────────
@@ -458,6 +552,9 @@ static void sensor_task(void *arg)
 
         data_uart_send(scd_valid, co2, scd_t, scd_h, bme_valid, bme_t, bme_h, bme_p);
 
+        // Send to Pi over WiFi
+        http_post_readings(co2, scd_t, scd_h, bme_t, bme_h, bme_p);
+
         // Poll every 5 s — aligned with SCD41 output rate
         vTaskDelay(pdMS_TO_TICKS(SCD41_MEAS_INTERVAL_MS));
     }
@@ -467,8 +564,18 @@ static void sensor_task(void *arg)
 void app_main(void)
 {
     ESP_LOGI(TAG, "AERIQ Starting...");
+
+    esp_err_t ret = nvs_flash_init();
+    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        ESP_ERROR_CHECK(nvs_flash_init());
+    }
+
     data_uart_init();
     i2c_master_init();
+
+    ESP_LOGI(TAG, "Initializing WiFi...");
+    wifi_init_sta();
 
     ESP_LOGI(TAG, "Initializing SCD41...");
     if (scd41_init() != ESP_OK)
@@ -479,6 +586,6 @@ void app_main(void)
         ESP_LOGE(TAG, "BME280 init failed - continuing anyway");
 
     ESP_LOGI(TAG, "Starting sensor task...");
-    xTaskCreate(sensor_task, "sensor_task", 4096, NULL, 5, NULL);
+    xTaskCreate(sensor_task, "sensor_task", 8192, NULL, 5, NULL);
 }
 

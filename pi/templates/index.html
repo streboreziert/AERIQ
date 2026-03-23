@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AERIQ Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0f1117; color: #e1e4e8; padding: 20px;
+        }
+        h1 { text-align: center; margin-bottom: 30px; color: #58a6ff; font-size: 1.8rem; }
+        .section {
+            background: #161b22; border: 1px solid #30363d;
+            border-radius: 12px; padding: 20px; margin-bottom: 24px;
+        }
+        .section h2 {
+            color: #8b949e; font-size: 0.9rem; text-transform: uppercase;
+            letter-spacing: 1px; margin-bottom: 16px;
+        }
+        .current-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px;
+        }
+        .card {
+            background: #0d1117; border: 1px solid #30363d;
+            border-radius: 8px; padding: 16px; text-align: center;
+        }
+        .card .value { font-size: 2.2rem; font-weight: 700; }
+        .card .label { color: #8b949e; font-size: 0.85rem; margin-top: 4px; }
+        .co2-good { color: #3fb950; }
+        .co2-warn { color: #d29922; }
+        .co2-bad  { color: #f85149; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px 12px; text-align: right; border-bottom: 1px solid #21262d; }
+        th {
+            color: #8b949e; font-weight: 600; font-size: 0.8rem;
+            text-transform: uppercase; position: sticky; top: 0; background: #161b22;
+        }
+        td { font-size: 0.9rem; }
+        th:first-child, td:first-child { text-align: left; }
+        .table-wrap { max-height: 400px; overflow-y: auto; }
+        .status { text-align: center; color: #8b949e; padding: 20px; }
+        .updated { text-align: center; color: #484f58; margin-top: 16px; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <h1>&#127811; AERIQ Air Quality</h1>
+
+    <div class="section">
+        <h2>Current Readings</h2>
+        <div class="current-grid" id="current">
+            <div class="card">
+                <div class="value" id="cur-co2">--</div>
+                <div class="label">CO&#8322; (ppm)</div>
+            </div>
+            <div class="card">
+                <div class="value" id="cur-temp">--</div>
+                <div class="label">Temperature (&deg;C)</div>
+            </div>
+            <div class="card">
+                <div class="value" id="cur-hum">--</div>
+                <div class="label">Humidity (%)</div>
+            </div>
+            <div class="card">
+                <div class="value" id="cur-press">--</div>
+                <div class="label">Pressure (hPa)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Last Hour</h2>
+        <div class="table-wrap" id="hour-table"><p class="status">Loading&hellip;</p></div>
+    </div>
+
+    <div class="section">
+        <h2>Last 24 Hours</h2>
+        <div class="table-wrap" id="day-table"><p class="status">Loading&hellip;</p></div>
+    </div>
+
+    <div class="updated" id="updated"></div>
+
+    <script>
+        function co2Class(v) {
+            if (v < 800) return 'co2-good';
+            if (v < 1000) return 'co2-warn';
+            return 'co2-bad';
+        }
+
+        function fmtTime(ts) {
+            return new Date(ts * 1000).toLocaleTimeString();
+        }
+
+        function fmtDateTime(ts) {
+            var d = new Date(ts * 1000);
+            return d.toLocaleDateString() + ' ' + d.toLocaleTimeString();
+        }
+
+        function buildTable(rows, timeFmt) {
+            if (!rows.length) return '<p class="status">No data yet</p>';
+            var html = '<table><tr><th>Time</th><th>CO\u2082</th><th>Temp</th><th>Humidity</th><th>Pressure</th></tr>';
+            for (var i = 0; i < rows.length; i++) {
+                var r = rows[i];
+                html += '<tr>' +
+                    '<td>' + timeFmt(r.ts) + '</td>' +
+                    '<td class="' + co2Class(r.co2) + '">' + (r.co2 != null ? r.co2 : '--') + '</td>' +
+                    '<td>' + (r.temperature != null ? r.temperature.toFixed(1) + ' \u00b0C' : '--') + '</td>' +
+                    '<td>' + (r.humidity != null ? r.humidity.toFixed(1) + ' %' : '--') + '</td>' +
+                    '<td>' + (r.pressure != null ? r.pressure.toFixed(1) : '--') + '</td>' +
+                    '</tr>';
+            }
+            html += '</table>';
+            return html;
+        }
+
+        /* Keep one row per intervalSec seconds */
+        function thinRows(rows, intervalSec) {
+            if (!rows.length) return rows;
+            var result = [rows[0]];
+            var lastTs = rows[0].ts;
+            for (var i = 1; i < rows.length; i++) {
+                if (lastTs - rows[i].ts >= intervalSec) {
+                    result.push(rows[i]);
+                    lastTs = rows[i].ts;
+                }
+            }
+            return result;
+        }
+
+        async function refresh() {
+            try {
+                var cur = await (await fetch('/readings')).json();
+                if (cur.co2 != null) {
+                    var co2El = document.getElementById('cur-co2');
+                    co2El.textContent = cur.co2;
+                    co2El.className = 'value ' + co2Class(cur.co2);
+                    document.getElementById('cur-temp').textContent =
+                        cur.temperature != null ? cur.temperature.toFixed(1) + '\u00b0' : '--';
+                    document.getElementById('cur-hum').textContent =
+                        cur.humidity != null ? cur.humidity.toFixed(1) + '%' : '--';
+                    document.getElementById('cur-press').textContent =
+                        cur.pressure != null ? cur.pressure.toFixed(1) : '--';
+                }
+
+                var hourRows = await (await fetch('/api/history?period=hour')).json();
+                document.getElementById('hour-table').innerHTML =
+                    buildTable(thinRows(hourRows, 60), fmtTime);
+
+                var dayRows = await (await fetch('/api/history?period=day')).json();
+                document.getElementById('day-table').innerHTML =
+                    buildTable(thinRows(dayRows, 300), fmtDateTime);
+
+                document.getElementById('updated').textContent =
+                    'Updated: ' + new Date().toLocaleTimeString();
+            } catch (e) {
+                console.error('Refresh error:', e);
+            }
+        }
+
+        refresh();
+        setInterval(refresh, 5000);
+    </script>
+</body>
+</html>
