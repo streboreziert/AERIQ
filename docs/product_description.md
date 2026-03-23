@@ -1,0 +1,25 @@
+## Idea description.
+
+This project is a compact, standalone air-quality monitor built for everyday indoor use, combining accurate sensing, clean industrial design, and a complete data pipeline from device to dashboard. The electronics are designed from scratch in KiCad, including a custom PCB with an integrated CO₂ sensor along with a humidity and temperature sensor to capture ventilation quality in real time. The enclosure is a custom designed 3D-printed case, designed to protect the electronics while ensuring proper airflow, with practical features like easy mounting/placement, good visibility.
+
+The embedded firmware is fully programmed to manage sensor sampling, digital filtering, calibration logic, and user-friendly behavior. It means the device’s microcontroller software is written to regularly read the CO₂/humidity/temperature sensors (it wakes up from sleep mode, sends the data and goes back to sleep), smooth out noisy readings so values don’t jump around, apply calibration/compensation so measurements stay accurate.
+
+Measurements are translated into meaningful indicators such as ventilation warnings based on both the CO₂ level and the CO₂ trend over time. A minimal interface (display and status indicators) keeps the device readable from a distance, while configurable thresholds enable alerts when CO₂ rises beyond healthy indoor levels or when humidity drifts into ranges associated with discomfort or condensation risk. The sensor connects to Wi-Fi and sends its readings via a REST API to a database, where they can be viewed in an app as a table, while a Raspberry Pi Zero serves as a simple gateway to handle network setup, temporary local storage if the connection drops, and reliable uploading when the internet is available.
+
+### ER scheme: https://drive.google.com/file/d/1WCpyld4nfr63qucxKFbbk-EPQDb_dCg8/view?usp=sharing
+
+## The Problem We Are Solving
+
+As urbanisation accelerates and large-scale buildings increasingly dominate both cities and rural environments, people are spending unprecedented amounts of time indoors—often in densely occupied spaces. Under these conditions, indoor air quality deteriorates rapidly. Continuous human presence leads to elevated carbon dioxide (CO₂) concentrations and excessive humidity, two invisible yet critical threats to comfort, health, and productivity.
+
+High CO₂ levels are strongly linked to drowsiness, fatigue, reduced concentration, and impaired cognitive performance. At levels commonly reached in everyday indoor environments, headaches and dizziness can occur, silently undermining well-being and efficiency. Excess humidity further degrades indoor conditions by increasing perspiration and discomfort, producing musty odours, and—over extended periods—encouraging mould growth and dust mite proliferation, both of which pose serious respiratory risks.
+
+By continuously tracking CO₂ concentration and humidity, AERIQ notifies occupants exactly when ventilation becomes essential, enabling timely intervention. This leads to healthier indoor environments, improved alertness, and long-term protection of the building itself. Such devices are rarely inexpensive (Aranet 4 ≈ €200; Airvalent Premium ≈ €160), yet AERIQ performs not far behind industry leaders while costing just €80, including profit margins and delivery.
+
+In addition, AERIQ integrates precise temperature and air-pressure sensors. Temperature monitoring helps maintain thermal stability—particularly in winter—reducing unnecessary heating losses and improving energy efficiency. Air-pressure data provides valuable insight into recurring symptoms such as migraines, dizziness, and headaches, which are often misattributed to other health issues. By correlating environmental conditions with physical well-being, AERIQ empowers users with clarity rather than guesswork.
+
+## Potential Clients
+
+Air quality fluctuates most dramatically in high-occupancy environments such as offices, university buildings, hotels, gyms, classrooms, and supermarkets—making these institutions prime adopters of AERIQ. Improved indoor air directly translates to higher productivity, better learning outcomes, enhanced customer comfort, and reduced sick leave.
+
+Beyond commercial spaces, AERIQ is highly valuable in private households. Families can rely on objective temperature data to eliminate everyday disputes, allergy sufferers can maintain optimal humidity levels, and homeowners can prevent long-term structural damage caused by moisture. Property managers, landlords, and real-estate developers can also leverage AERIQ to ensure compliance with indoor air standards and increase property value.
