@@ -1,1 +1,48 @@
+# macOS deps (once)
+brew update
+brew install cmake ninja dfu-util ccache
+
+# download esp-idf (once)
+cd ~
+git clone --recursive https://github.com/espressif/esp-idf.git
+cd ~/esp-idf
+./install.sh esp32c3
+
+# load esp-idf env (every new terminal)
+. ~/esp-idf/export.sh
+
+# project python deps (pi app, optional)
+cd /Users/robertstreize/Desktop/AERIQ/pi
+python3 -m pip install -r requirements.txt
+
+# enter project
+cd /Users/robertstreize/Desktop/AERIQ
+
+# verify esp-idf env
+idf.py --version
+python3 --version
+
+# set target (once)
+idf.py set-target esp32c3
+
+# optional config ui
+idf.py menuconfig
+
+# build firmware
+idf.py build
+
+# find serial port (macOS)
+ls /dev/tty.usb* /dev/cu.usb*
+
+# flash + monitor
+idf.py -p /dev/tty.usbserial-XXXX flash monitor
+
+# if nvs/wifi state broken
+idf.py -p /dev/tty.usbserial-XXXX erase-flash
+idf.py -p /dev/tty.usbserial-XXXX flash monitor
+
+# local c simulator (no board)
+cd /Users/robertstreize/Desktop/AERIQ/simulator
+cc -O2 -Wall -Wextra -std=c11 -o local_simulator local_simulator.c
+./local_simulator 10
 
