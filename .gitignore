@@ -4,3 +4,6 @@ managed_components/
 dependencies.lock
 pi/aeriq.db
 pi/__pycache__/
+
+# Local simulator build output
+simulator/local_simulator
