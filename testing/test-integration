@@ -1,0 +1,127 @@
+
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+#include <math.h>
+
+typedef struct {
+    uint16_t dig_T1; int16_t dig_T2; int16_t dig_T3;
+    uint16_t dig_P1; int16_t dig_P2; int16_t dig_P3;
+    int16_t  dig_P4; int16_t dig_P5; int16_t dig_P6;
+    int16_t  dig_P7; int16_t dig_P8; int16_t dig_P9;
+    uint8_t  dig_H1; int16_t dig_H2; uint8_t dig_H3;
+    int16_t  dig_H4; int16_t dig_H5; int8_t  dig_H6;
+} bme280_calib_t;
+
+static bme280_calib_t bme280_calib;
+static int32_t t_fine;
+
+static float bme280_compensate_temperature(int32_t adc_T) {
+    double var1 = ((double)adc_T/16384.0 - (double)bme280_calib.dig_T1/1024.0) * (double)bme280_calib.dig_T2;
+    double var2 = (((double)adc_T/131072.0 - (double)bme280_calib.dig_T1/8192.0) *
+                   ((double)adc_T/131072.0 - (double)bme280_calib.dig_T1/8192.0)) * (double)bme280_calib.dig_T3;
+    t_fine = (int32_t)(var1 + var2);
+    return (float)((var1 + var2) / 5120.0);
+}
+
+static float bme280_compensate_pressure(int32_t adc_P) {
+    double var1 = ((double)t_fine/2.0) - 64000.0;
+    double var2 = var1*var1*(double)bme280_calib.dig_P6/32768.0;
+    var2 = var2 + var1*(double)bme280_calib.dig_P5*2.0;
+    var2 = (var2/4.0) + ((double)bme280_calib.dig_P4*65536.0);
+    var1 = ((double)bme280_calib.dig_P3*var1*var1/524288.0 + (double)bme280_calib.dig_P2*var1)/524288.0;
+    var1 = (1.0 + var1/32768.0)*(double)bme280_calib.dig_P1;
+    if (var1 == 0.0) return 0.0f;
+    double p = 1048576.0 - (double)adc_P;
+    p = (p - (var2/4096.0))*6250.0/var1;
+    var1 = (double)bme280_calib.dig_P9*p*p/2147483648.0;
+    var2 = p*(double)bme280_calib.dig_P8/32768.0;
+    p = p + (var1+var2+(double)bme280_calib.dig_P7)/16.0;
+    return (float)(p/100.0);
+}
+
+void setup_calibration() {
+    bme280_calib.dig_T1 = 27504; bme280_calib.dig_T2 = 26435; bme280_calib.dig_T3 = -1000;
+    bme280_calib.dig_P1 = 36477; bme280_calib.dig_P2 = -10685; bme280_calib.dig_P3 = 3024;
+    bme280_calib.dig_P4 = 2855;  bme280_calib.dig_P5 = 140;   bme280_calib.dig_P6 = -7;
+    bme280_calib.dig_P7 = 15500; bme280_calib.dig_P8 = -14600; bme280_calib.dig_P9 = 6000;
+}
+
+// bme280_compensate_temperature → bme280_compensate_pressure
+
+void test_I1_temp_then_pressure(void) {
+    printf("========================================\n");
+    printf("INTEGRATION TEST 1\n");
+    printf("Temperature -> Pressure chain\n");
+    printf("========================================\n\n");
+
+    setup_calibration();
+
+    int32_t adc_T = 519888;
+    int32_t adc_P = 415148;
+
+    // pressure without temperature
+    t_fine = 0;
+    float pressure_wrong = bme280_compensate_pressure(adc_P);
+
+    // pressure with temperature
+    float temperature = bme280_compensate_temperature(adc_T);
+    float pressure_correct = bme280_compensate_pressure(adc_P);
+
+    printf("Step 1 - Pressure WITHOUT temperature first:\n");
+    printf("  t_fine = 0\n");
+    printf("  pressure = %.2f hPa\n\n", pressure_wrong);
+
+    printf("Step 2 - Temperature computed first:\n");
+    printf("  adc_T = %d\n", adc_T);
+    printf("  temperature = %.2f C\n", temperature);
+    printf("  t_fine = %d\n\n", t_fine);
+
+    printf("Step 3 - Pressure WITH temperature first:\n");
+    printf("  adc_P = %d\n", adc_P);
+    printf("  pressure = %.2f hPa\n\n", pressure_correct);
+
+    printf("Difference: %.2f hPa\n", fabsf(pressure_correct - pressure_wrong));
+}
+
+//data -> snprintf (JSON object formating)
+
+void test_I2_sensor_to_json(void) {
+    setup_calibration();
+
+    int32_t adc_T = 519888;
+    int32_t adc_P = 415148;
+
+    // Step 1: raw ADC values go through compensation functions
+    float bme_t = bme280_compensate_temperature(adc_T); // sets t_fine
+    float bme_p = bme280_compensate_pressure(adc_P);
+
+    printf("Step 1 - Raw ADC values:\n");
+    printf("  adc_T = %d\n", adc_T);
+    printf("  adc_P = %d\n\n", adc_P);
+
+    printf("Step 2 - After compensation:\n");
+    printf("  bme_t = %.2f C\n", bme_t);
+    printf("  bme_p = %.2f hPa\n\n", bme_p);
+
+    // Step 2: compensated values feed into JSON formatter
+    char json[256];
+    uint16_t co2  = 850;
+    float scd_t   = 22.5f;
+    float scd_h   = 48.3f;
+    float bme_h   = 47.0f;
+
+    snprintf(json, sizeof(json),
+             "{\"temperature\":%.1f,\"humidity\":%.1f,\"co2\":%u,"
+             "\"pressure\":%.2f,\"bme_temperature\":%.1f,\"bme_humidity\":%.1f}",
+             scd_t, scd_h, co2, bme_p, bme_t, bme_h);
+
+    printf("Step 3 - JSON sent to RPi server:\n");
+    printf("  %s\n", json);
+}
+
+int main(void) {
+    test_I1_temp_then_pressure();
+    test_I2_sensor_to_json();
+    return 0;
+}
