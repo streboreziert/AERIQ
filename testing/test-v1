@@ -1,0 +1,136 @@
+
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
+#include <math.h>
+
+typedef struct {
+    uint16_t dig_T1; int16_t dig_T2; int16_t dig_T3;
+    uint16_t dig_P1; int16_t dig_P2; int16_t dig_P3;
+    int16_t  dig_P4; int16_t dig_P5; int16_t dig_P6;
+    int16_t  dig_P7; int16_t dig_P8; int16_t dig_P9;
+    uint8_t  dig_H1; int16_t dig_H2; uint8_t dig_H3;
+    int16_t  dig_H4; int16_t dig_H5; int8_t  dig_H6;
+} bme280_calib_t;
+
+static bme280_calib_t bme280_calib;
+static int32_t t_fine;
+
+static float bme280_compensate_pressure(int32_t adc_P) {
+    double var1 = ((double)t_fine/2.0) - 64000.0;
+    double var2 = var1*var1*(double)bme280_calib.dig_P6/32768.0;
+    var2 = var2 + var1*(double)bme280_calib.dig_P5*2.0;
+    var2 = (var2/4.0) + ((double)bme280_calib.dig_P4*65536.0);
+    var1 = ((double)bme280_calib.dig_P3*var1*var1/524288.0 + (double)bme280_calib.dig_P2*var1)/524288.0;
+    var1 = (1.0 + var1/32768.0)*(double)bme280_calib.dig_P1;
+    if (var1 == 0.0) return 0.0f;
+    double p = 1048576.0 - (double)adc_P;
+    p = (p - (var2/4096.0))*6250.0/var1;
+    var1 = (double)bme280_calib.dig_P9*p*p/2147483648.0;
+    var2 = p*(double)bme280_calib.dig_P8/32768.0;
+    p = p + (var1+var2+(double)bme280_calib.dig_P7)/16.0;
+    return (float)(p/100.0);
+}
+
+void setup_calibration() {
+    bme280_calib.dig_P1 = 36477; bme280_calib.dig_P2 = -10685;
+    bme280_calib.dig_P3 = 3024;  bme280_calib.dig_P4 = 2855;
+    bme280_calib.dig_P5 = 140;   bme280_calib.dig_P6 = -7;
+    bme280_calib.dig_P7 = 15500; bme280_calib.dig_P8 = -14600;
+    bme280_calib.dig_P9 = 6000;
+}
+
+//bme280_compensate_pressure
+void test_pressure_unexpected(void) {
+   
+
+    setup_calibration();
+    float result;
+
+    // Normal case for reference
+    t_fine = 128422;
+    result = bme280_compensate_pressure(415148);
+    printf("Normal input  (adc_P=415148, t_fine=128422):  %.2f hPa\n", result);
+
+    // t_fine = 0 *no  temp b4 pressure)
+    t_fine = 0;
+    result = bme280_compensate_pressure(415148);
+    printf("t_fine = 0    (temperature not computed yet):  %.2f hPa\n", result);
+
+    // adc_P = 0
+    t_fine = 128422;
+    result = bme280_compensate_pressure(0);
+    printf("adc_P = 0     (no pressure reading):           %.2f hPa\n", result);
+
+    // adc_P = negative
+    result = bme280_compensate_pressure(-1);
+    printf("adc_P = -1    (negative raw value):            %.2f hPa\n", result);
+
+    // adc_P = max int32
+    result = bme280_compensate_pressure(2147483647);
+    printf("adc_P = MAX   (2147483647):                    %.2f hPa\n", result);
+
+    // All 0
+    memset(&bme280_calib, 0, sizeof(bme280_calib));
+    t_fine = 128422;
+    result = bme280_compensate_pressure(415148);
+    printf("Calib = all 0 (calibration never loaded):      %.2f hPa\n", result);
+}
+
+
+//snprintf
+
+void test_json_unexpected(void) {
+  
+    char json[256];
+
+    // Reference
+    snprintf(json, sizeof(json),
+             "{\"temperature\":%.1f,\"humidity\":%.1f,\"co2\":%u,"
+             "\"pressure\":%.2f,\"bme_temperature\":%.1f,\"bme_humidity\":%.1f}",
+             22.5f, 48.3f, (uint16_t)850, 1013.25f, 23.1f, 47.0f);
+    printf("Normal input:\n  %s\n\n", json);
+
+    // Zero
+    snprintf(json, sizeof(json),
+             "{\"temperature\":%.1f,\"humidity\":%.1f,\"co2\":%u,"
+             "\"pressure\":%.2f,\"bme_temperature\":%.1f,\"bme_humidity\":%.1f}",
+             0.0f, 0.0f, (uint16_t)0, 0.0f, 0.0f, 0.0f);
+    printf("All zeros:\n  %s\n\n", json);
+
+    // Negative temp
+    snprintf(json, sizeof(json),
+             "{\"temperature\":%.1f,\"humidity\":%.1f,\"co2\":%u,"
+             "\"pressure\":%.2f,\"bme_temperature\":%.1f,\"bme_humidity\":%.1f}",
+             -40.0f, 48.3f, (uint16_t)850, 1013.25f, -40.0f, 47.0f);
+    printf("Negative temperature (-40.0):\n  %s\n\n", json);
+
+    // CO2 MAX
+    snprintf(json, sizeof(json),
+             "{\"temperature\":%.1f,\"humidity\":%.1f,\"co2\":%u,"
+             "\"pressure\":%.2f,\"bme_temperature\":%.1f,\"bme_humidity\":%.1f}",
+             22.5f, 48.3f, (uint16_t)65535, 1013.25f, 23.1f, 47.0f);
+    printf("CO2 = 65535 ppm (max uint16):\n  %s\n\n", json);
+
+    // Impossible humidity
+    snprintf(json, sizeof(json),
+             "{\"temperature\":%.1f,\"humidity\":%.1f,\"co2\":%u,"
+             "\"pressure\":%.2f,\"bme_temperature\":%.1f,\"bme_humidity\":%.1f}",
+             22.5f, 150.0f, (uint16_t)850, 1013.25f, 23.1f, 150.0f);
+    printf("Humidity = 150%% (over 100):\n  %s\n\n", json);
+
+    // Extremes
+    snprintf(json, sizeof(json),
+             "{\"temperature\":%.1f,\"humidity\":%.1f,\"co2\":%u,"
+             "\"pressure\":%.2f,\"bme_temperature\":%.1f,\"bme_humidity\":%.1f}",
+             99999.9f, 99999.9f, (uint16_t)65535, 99999.99f, 99999.9f, 99999.9f);
+    printf("All extreme floats:\n  %s\n", json);
+    printf("  Buffer length: %zu / 256 chars\n\n", strlen(json));
+}
+
+
+int main(void) {
+    test_pressure_unexpected();
+    test_json_unexpected();
+    return 0;
+}
