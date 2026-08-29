@@ -1,88 +1,57 @@
 # AERIQ
 
-> Smart indoor air monitoring system
+Home air sensor — **CO₂, temperature, humidity, pressure**. ESP32-C3 firmware, a Raspberry Pi intake API, and a local simulator.
 
-**AERIQ** is a consumer-focused, mid-priced **home air quality sensor system** designed for everyday indoor environments.
+Not a dashboard mock. The firmware talks I²C to an **SCD41**, UART to a second C3, and HTTP to a Pi that stores readings in SQLite.
 
-It measures **CO₂ concentration, temperature, humidity, and air pressure**, and connects wirelessly to the **AERIQ app**, allowing users to view **real-time measurements** and **historical trends** in a clean, easy-to-understand interface.
-
----
-
-## Features
-
-- **CO₂ monitoring** for indoor air quality
-- **Temperature sensing**
-- **Humidity sensing**
-- **Air pressure measurement**
-- **Real-time data visualization**
-- **Historical data tracking**
-- **Minimal, user-friendly interface**
-- Designed for **continuous home operation**
+Live comfort math (same family as the lab): [aeriq-comfort](https://github.com/streboreziert/aeriq-comfort) · [robertstreize.com/lab.html#co2](https://robertstreize.com/lab.html#co2)
 
 ---
 
-## AERIQ App
+## What is actually here
 
-The **AERIQ app** provides:
-- **Live sensor readings** at a glance
-- **Clear historical graphs** over time
-- Simple insights without technical complexity
+| Path | What it is |
+|---|---|
+| [`main/main.c`](main/main.c) | ESP-IDF firmware — SCD41, Wi-Fi, POST `/readings` |
+| [`main.py`](main.py) / [`pi/app.py`](pi/app.py) | FastAPI + SQLite on the Pi |
+| [`simulator/`](simulator) | Local C simulator when the hardware is on the bench, not on the desk |
+| [`docs/`](docs) | Product notes and week plan |
+| [`comfort.py`](comfort.py) | Composite indoor score from CO₂ + RH (no hardware needed) |
 
----
-
-## Repository Structure
-
-- **src/ Firmware source code
-- **hardware/ PCB schematics, layouts, and hardware design files
-- **app/ AERIQ application
-- **docs/ Documentation and system architecture
-- **resources/ Images, diagrams, and reference materials
-
-## Hardware
-
-The **hardware** directory includes:
-- PCB schematics
-- Board layouts
-- Sensor integration
-- Power management and communication interfaces
+The old README listed `src/`, `hardware/`, `app/` as if they existed. They do not — this tree is the product.
 
 ---
 
-## Documentation
+## Comfort CLI
 
-The **docs** directory contains:
-- System architecture overview
-- Firmware documentation
-- Hardware design notes
-- App communication and data format specifications
+```bash
+python3 comfort.py --ppm 950 --rh 38
+```
 
----
-
-## Resources
-
-The **resources** directory stores:
-- Product images
-- Diagrams and visual assets
-- Reference materials
+Returns a band (`good` / `fair` / `poor` / `bad`) and a 0–1 score. **Not a medical device.**
 
 ---
 
-## Vision
+## Pi API
 
-**Know your air. Improve your space.**
+```bash
+pip install fastapi uvicorn pydantic
+uvicorn main:app --host 0.0.0.0 --port 8000
+curl -X POST http://127.0.0.1:8000/readings \
+  -H 'content-type: application/json' \
+  -d '{"temperature":22.1,"humidity":41,"co2":910}'
+```
+
+Put Wi-Fi credentials in NVS / `menuconfig`, not in a committed `main.c`.
 
 ---
-## Requirments - Roberts
 
-## FUNCTIONAL
-- Measure and register CO₂, humidity, temperature, and pressure
-- Store and transmit data to a local server or connected device
-- Display the most recent data on the device display
+## Hardware (as built)
 
-## NON-FUNCTIONAL
-- Achieve full functionality on a single battery for 2 months
-- Sensor accuracy should be within ±40 ppm for CO₂ and ±0.5°C for temperature
-- Device should maintain at least 95% connection reliability
+- ESP32-C3 · SCD41 on I²C (SDA GPIO4, SCL GPIO5)
+- UART0 between the two C3s (GPIO20/21)
+- Pi as the local AP / logger
 
+Site: [robertstreize.com](https://robertstreize.com/project.html?repo=AERIQ)
 
-
+MIT · Roberts Treize
